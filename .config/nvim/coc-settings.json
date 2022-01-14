@@ -1,0 +1,6 @@
+{
+    "clangd.semanticHighlighting": true,
+    "clangd.fallbackFlags": ["-std=c++17", "-Wall", "-DLOCAL"],
+    "diagnostic.enableSign": false,
+    "diagnostic.hintSign": ""
+}

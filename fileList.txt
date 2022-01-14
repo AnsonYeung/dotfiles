@@ -1,0 +1,15 @@
+.config/nvim/UltiSnips/tex.snippets
+.config/nvim/coc-settings.json
+.config/nvim/init.vim
+.gdbinit-gef.py
+.gdbinit.gef
+.gdbinit.old
+.gitconfig
+.gitignore
+.hushlogin
+.p10k.zsh
+.profile
+.tmux.conf
+.zlogout
+.zshrc
+.zshrc.zni
