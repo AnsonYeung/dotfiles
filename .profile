@@ -49,4 +49,6 @@ alias vim="nvim"
 alias gef="gdb -x ~/.gdbinit.gef"
 alias dis="objdump --demangle -M intel"
 alias venv="source .venv/bin/activate"
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
