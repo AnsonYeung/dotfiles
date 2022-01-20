@@ -11,15 +11,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'overcache/NeoSolarized'
-Plug 'sonph/onehalf', {'rtp': 'vim'}
 Plug 'tomasiser/vim-code-dark'
 
 Plug 'preservim/nerdtree'
-Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'SirVer/ultisnips', {'for': 'tex'}
+Plug 'honza/vim-snippets', {'for': 'tex'}
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
