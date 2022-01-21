@@ -1,5 +1,4 @@
 .config/nvim/UltiSnips/tex.snippets
-.config/nvim/coc-settings.json
 .config/nvim/init.vim
 .gdbinit-gef.py
 .gdbinit.gef
