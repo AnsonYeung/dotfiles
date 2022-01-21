@@ -206,6 +206,7 @@ set shiftwidth=4
 set smarttab
 set autowrite
 set splitright
+set notimeout ttimeout
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
