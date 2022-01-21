@@ -23,6 +23,8 @@ Plug 'honza/vim-snippets'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
