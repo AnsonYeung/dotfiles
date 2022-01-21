@@ -29,6 +29,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -202,9 +204,8 @@ set softtabstop=0
 set expandtab
 set shiftwidth=4
 set smarttab
-
-"colorscheme onehalfdark
-"let g:airline_theme='onehalfdark'
+set autowrite
+set splitright
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -216,6 +217,14 @@ set noshowmatch
 
 set mouse=a
 au BufRead,BufNewFile *.sage set filetype=python
-" TODO: find a better way of doing this
-au FileType cpp inoremap {<CR> {<CR>}<Esc>O
+
+" My own keymaps
+nnoremap <leader>m <cmd>make! -j8 run<CR>
+nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
+nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
+nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
+nnoremap <leader>vq <cmd>source $MYVIMRC\|bp\|bd #<CR>
+nnoremap <leader>vt :vsplit\|term<CR>A
+nnoremap <leader>b <cmd>bp\|bd #<CR>
+nnoremap <leader>h :tab help<SPACE>
 
