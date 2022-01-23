@@ -224,8 +224,9 @@ nnoremap <leader>m <cmd>make! -j8 run<CR>
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
-nnoremap <leader>vq <cmd>source $MYVIMRC\|bp\|bd #<CR>
+nnoremap <leader>vq <cmd>w\|source $MYVIMRC\|bp\|bd #<CR>
 nnoremap <leader>vt :vsplit\|term<CR>A
 nnoremap <leader>b <cmd>bp\|bd #<CR>
 nnoremap <leader>h :tab help<SPACE>
 
+iabbrev sedn send
