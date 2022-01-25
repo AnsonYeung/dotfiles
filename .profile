@@ -40,6 +40,10 @@ if [ -f "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi
 
+if [ ! -z "$SSH_AGENT_PID" ] ; then
+    DONT_KILL_SSH_AGENT=1
+fi
+
 # https://superuser.com/questions/1228411/silent-background-jobs-in-zsh/1285272
 # fetch in background
 # Run the command given by "$@" in the background
