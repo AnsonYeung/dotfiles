@@ -1,4 +1,4 @@
-# delete ssh-agent on logout, so won't leave tons of ssh-agent lying in memory.
+# delete ssh-agent on logout
 if [ ! -z "$SSH_AGENT_PID" ]; then
     kill $SSH_AGENT_PID
 fi
