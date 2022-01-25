@@ -35,6 +35,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+function venv() {
+    source .venv/bin/activate
+}
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -aCF'
@@ -43,12 +47,13 @@ export PATH="$HOME/.r2env/bin:$PATH"
 export CP="~/competitive-programming"
 export EDITOR="nvim"
 # wsl x server, disable this line if needed
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+if [ -z $WSL_INTEROP ]; then
+    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+fi
 
 alias vim="nvim"
 alias gef="gdb -x ~/.gdbinit.gef"
 alias dis="objdump --demangle -M intel"
-alias venv="source .venv/bin/activate"
 if [ -f "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi
