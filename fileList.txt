@@ -9,6 +9,6 @@
 .p10k.zsh
 .profile
 .tmux.conf
-.logout
+.zlogout
 .zshrc
 .zshrc.zni
