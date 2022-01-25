@@ -27,7 +27,7 @@ export PATH="$HOME/.r2env/bin:$PATH"
 export CP="~/competitive-programming"
 export EDITOR="nvim"
 
-if [ ! -z $WSL_INTEROP ]; then
+if [ ! -z "$WSLENV" ]; then
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 fi
 
