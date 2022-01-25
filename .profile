@@ -18,39 +18,24 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.r2env/bin:$PATH"
+export CP="~/competitive-programming"
+export EDITOR="nvim"
 
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+if [ ! -z $WSL_INTEROP ]; then
+    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 fi
+
 
 function venv() {
     source .venv/bin/activate
 }
 
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -aCF'
-
-export PATH="$HOME/.r2env/bin:$PATH"
-export CP="~/competitive-programming"
-export EDITOR="nvim"
-if [ -z $WSL_INTEROP ]; then
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-fi
-
-alias vim="nvim"
-alias gef="gdb -x ~/.gdbinit.gef"
-alias dis="objdump --demangle -M intel"
 if [ -f "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi
@@ -70,4 +55,4 @@ silent_background() {
   fi
   disown &>/dev/null  # Close STD{OUT,ERR} to prevent whine if job has already completed
 }
-silent_background git -C ~/github/dotfiles fetch
+git -C ~/github/dotfiles pull &
