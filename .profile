@@ -60,4 +60,5 @@ silent_background() {
   disown &>/dev/null  # Close STD{OUT,ERR} to prevent whine if job has already completed
 }
 
-silent_background sh -c "git -C ~/github/dotfiles pull >> ~/.dotfiles.log"
+DOTFILES_DIR=~/github/dotfiles
+silent_background sh -c "git -C $DOTFILES_DIR pull >> ~/.dotfiles.log"
