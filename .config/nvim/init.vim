@@ -207,6 +207,7 @@ set smarttab
 set autowrite
 set splitright
 set notimeout ttimeout
+set scrolloff=3
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -228,5 +229,3 @@ nnoremap <leader>vq <cmd>w\|source $MYVIMRC\|bp\|bd #<CR>
 nnoremap <leader>vt :vsplit\|term<CR>A
 nnoremap <leader>b <cmd>bp\|bd #<CR>
 nnoremap <leader>h :tab help<SPACE>
-
-iabbrev sedn send
