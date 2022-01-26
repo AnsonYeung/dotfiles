@@ -18,6 +18,6 @@ done
 ln .profile ~/.zprofile "$@"
 
 if [ ! -f ~/.gdbinit ]; then
-    bash -c "$(curl -fsSL http://gef.blah.cat/sh)"
+    wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
+    echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 fi
-
