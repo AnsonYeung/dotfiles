@@ -1,8 +1,5 @@
 .config/nvim/UltiSnips/tex.snippets
 .config/nvim/init.vim
-.gdbinit-gef.py
-.gdbinit.gef
-.gdbinit.old
 .gitconfig
 .gitignore
 .hushlogin

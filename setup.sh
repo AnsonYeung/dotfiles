@@ -16,5 +16,8 @@ for i in $FILES; do
 done
 
 ln .profile ~/.zprofile "$@"
-ln .gdbinit.gef ~/.gdbinit "$@"
+
+if [ ! -f ~/.gdbinit ]; then
+    sh -c "$(curl -fsSL http://gef.blah.cat/sh)"
+fi
 
