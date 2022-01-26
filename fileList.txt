@@ -6,7 +6,6 @@
 .gitconfig
 .gitignore
 .hushlogin
-.p10k.zsh
 .profile
 .tmux.conf
 .zlogout
