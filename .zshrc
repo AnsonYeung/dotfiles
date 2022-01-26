@@ -77,7 +77,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    git
+    zsh-autosuggestions
+    zsh-vi-mode
+    zsh-syntax-highlighting # must be the last plugin
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -133,26 +138,7 @@ function _set_cursor() {
     fi
 }
 
-# Remove mode switching delay.
-KEYTIMEOUT=5
 TIMEFMT=$'time %J\nuser\t%mU\nsystem\t%mS\ntotal\t%mE (%P cpu)'
-function _set_block_cursor() { _set_cursor '\e[2 q' }
-function _set_beam_cursor() { _set_cursor '\e[6 q' }
-
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-      _set_block_cursor
-  else
-      _set_beam_cursor
-  fi
-}
-zle -N zle-keymap-select
-# ensure beam cursor when starting new terminal
-precmd_functions+=(_set_beam_cursor) #
-# ensure insert mode and beam cursor when exiting vim
-zle-line-init() { zle -K viins; _set_beam_cursor }
-zle-line-finish() { _set_block_cursor }
-zle -N zle-line-finish
 
 # The following lines were added by compinstall
 
@@ -169,7 +155,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt notify
 unsetopt beep
-bindkey -v
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
