@@ -11,4 +11,3 @@
 .tmux.conf
 .zlogout
 .zshrc
-.zshrc.zni
