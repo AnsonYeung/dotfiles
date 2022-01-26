@@ -18,6 +18,6 @@ done
 ln .profile ~/.zprofile "$@"
 
 if [ ! -f ~/.gdbinit ]; then
-    sh -c "$(curl -fsSL http://gef.blah.cat/sh)"
+    bash -c "$(curl -fsSL http://gef.blah.cat/sh)"
 fi
 

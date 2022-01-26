@@ -126,7 +126,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -aCF'
 alias vim="nvim"
-alias gef="gdb -x ~/.gdbinit.gef"
 alias dis="objdump --demangle -M intel"
 
 function _set_cursor() {
