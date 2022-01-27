@@ -17,14 +17,11 @@ endif
 Plug 'tomasiser/vim-code-dark'
 
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-" Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
