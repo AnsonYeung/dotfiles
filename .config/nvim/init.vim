@@ -185,7 +185,7 @@ let g:tex_conceal='abdmg'
 set spelllang=en_us
 autocmd FileType tex setlocal spell
 autocmd FileType tex setlocal conceallevel=1
-autocmd FileType tex inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+autocmd FileType tex inoremap <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
 
 set clipboard=unnamedplus
 
@@ -209,6 +209,9 @@ set scrolloff=3
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" write all on tmux switch
+let g:tmux_navigator_save_on_switch = 2
+
 set background=dark
 colorscheme codedark
 let g:airline_theme='codedark'
@@ -218,7 +221,8 @@ set mouse=a
 au BufRead,BufNewFile *.sage set filetype=python
 
 " My own keymaps
-nnoremap <leader>m <cmd>make! -j8 run<CR>
+autocmd FileType cpp nnoremap <leader>m <cmd>make! -j8 run<CR>
+autocmd FileType rust nnoremap <leader>m <cmd>!cargo run<CR>
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>

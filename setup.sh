@@ -21,3 +21,7 @@ if [ ! -f ~/.gdbinit ]; then
     wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
     echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 fi
+
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
