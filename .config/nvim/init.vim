@@ -188,7 +188,6 @@ autocmd FileType tex setlocal conceallevel=1
 autocmd FileType tex inoremap <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
 
 set clipboard=unnamedplus
-
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

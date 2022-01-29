@@ -31,11 +31,6 @@ if [ ! -z "$WSLENV" ]; then
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 fi
 
-
-function venv() {
-    source .venv/bin/activate
-}
-
 if [ -f "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi

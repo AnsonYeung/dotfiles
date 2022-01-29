@@ -129,13 +129,8 @@ alias l='ls -aCF'
 alias vim="nvim"
 alias dis="objdump --demangle -M intel"
 
-function _set_cursor() {
-    if [[ $TMUX = '' ]]; then
-        echo -ne $1
-    else
-        typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-        echo -ne "\ePtmux;\e\e$1\e\\"
-    fi
+function venv() {
+    source .venv/bin/activate
 }
 
 TIMEFMT=$'time %J\nuser\t%mU\nsystem\t%mS\ntotal\t%mE (%P cpu)'
