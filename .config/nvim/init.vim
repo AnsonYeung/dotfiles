@@ -220,7 +220,7 @@ set mouse=a
 au BufRead,BufNewFile *.sage set filetype=python
 
 " My own keymaps
-autocmd FileType cpp nnoremap <leader>m <cmd>make! -j8 run<CR>
+autocmd FileType cpp nnoremap <leader>m <cmd>make! -j run<CR>
 autocmd FileType rust nnoremap <leader>m <cmd>!cargo run<CR>
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
