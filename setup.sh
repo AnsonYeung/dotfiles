@@ -3,7 +3,6 @@
 # oh my zsh will overwrite files on install
 if [ ! -d ${ZSH:-$HOME/.oh-my-zsh} ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
     git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
     git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
     git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
@@ -11,10 +10,27 @@ if [ ! -d ${ZSH:-$HOME/.oh-my-zsh} ]; then
     git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins $ZSH_CUSTOM/plugins/autoupdate
 fi
 
-FILES=$(cat fileList.txt)
+ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+
+ensure_install_ohmyzsh_custom() {
+    if [ ! -d $ZSH_CUSTOM/$1 ]; then
+        git clone $2 $ZSH_CUSTOM/$1
+    fi
+}
+
+ensure_install_ohmyzsh_custom themes/powerlevel10k
+ensure_install_ohmyzsh_custom themes/powerlevel10k https://github.com/romkatv/powerlevel10k.git
+ensure_install_ohmyzsh_custom plugins/zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
+ensure_install_ohmyzsh_custom plugins/zsh-vi-mode https://github.com/jeffreytse/zsh-vi-mode
+ensure_install_ohmyzsh_custom plugins/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
+ensure_install_ohmyzsh_custom plugins/autoupdate https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+
+SCRIPT_DIR=$(realpath "$(dirname $0)")
+FILES=$(cat $SCRIPT_DIR/fileList.txt)
+
 for i in $FILES; do
-    mkdir -p `dirname ~/$i`
-    ln $PWD/$i ~/$i "$@"
+    mkdir -p $(dirname ~/$i)
+    ln $SCRIPT_DIR/$i ~/$i "$@"
 done
 
 ln .profile ~/.zprofile "$@"
