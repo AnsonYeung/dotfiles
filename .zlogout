@@ -6,6 +6,9 @@ fi
 echo checking dotfiles
 if [ -n "$(git -C $DOTFILES_DIR status -s)" ]; then
     echo dotfiles dirty
-    { git -C $DOTFILES_DIR add -A; git -C $DOTFILES_DIR commit -m "auto commit";  git -C $DOTFILES_DIR push; } >> ~/.dotfiles.log 2>&1
+    if read -q '?Write all changes (y/N)?'; then
+        { git -C $DOTFILES_DIR add -A; git -C $DOTFILES_DIR commit -m "auto commit";  git -C $DOTFILES_DIR push; } >> ~/.dotfiles.log 2>&1
+    fi
+    echo
 fi
 echo logout
