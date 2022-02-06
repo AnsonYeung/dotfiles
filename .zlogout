@@ -6,6 +6,7 @@ fi
 echo checking dotfiles
 if [ -n "$(git -C $DOTFILES_DIR status -s)" ]; then
     echo dotfiles dirty
+    git -C $DOTFILES_DIR diff
     if read -q "?Write all changes (y/N)? "; then
         echo
         read "msg?Commit message: "
