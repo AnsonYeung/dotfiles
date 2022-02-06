@@ -155,11 +155,16 @@ local servers = { 'clangd', 'pyright', 'rust_analyzer', 'tsserver' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
-        flags = {
-            debounce_text_changes = 150,
-        },
     }
 end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            update_in_insert = true
+        }
+    )
 
 EOF
 
