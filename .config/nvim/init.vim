@@ -180,9 +180,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 let g:tex_flavor='latex'
 
-let g:vimtex_view_general_viewer = 'sumatra'
-let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
-let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+if !empty($WSL_INTEROP)
+    let g:vimtex_view_general_viewer = 'sumatra'
+    let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
+endif
 
 let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmg'
@@ -190,7 +191,9 @@ let g:tex_conceal='abdmg'
 set spelllang=en_us
 autocmd FileType tex setlocal spell
 autocmd FileType tex setlocal conceallevel=1
-autocmd FileType tex inoremap <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
+autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
+autocmd FileType tex let b:AutoPairs = {}
+autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
 
 set clipboard=unnamedplus
 if exists('+termguicolors')
@@ -222,13 +225,13 @@ let g:airline_theme='codedark'
 set noshowmatch
 
 set mouse=a
-au BufRead,BufNewFile *.sage set filetype=python
+autocmd BufRead,BufNewFile *.sage set filetype=python
 
 " My own keymaps
-autocmd FileType cpp nnoremap <leader>m <cmd>make! -j run<CR>
-autocmd FileType rust nnoremap <leader>m <cmd>!cargo test<CR>
+autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
+autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
 autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
-autocmd FileType python inoremap ++ <space>+=<space>1
+autocmd FileType python inoremap <buffer> ++ <space>+=<space>1
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
