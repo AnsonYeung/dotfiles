@@ -228,6 +228,7 @@ au BufRead,BufNewFile *.sage set filetype=python
 autocmd FileType cpp nnoremap <leader>m <cmd>make! -j run<CR>
 autocmd FileType rust nnoremap <leader>m <cmd>!cargo test<CR>
 autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
+autocmd FileType python inoremap ++ <space>+=<space>1
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
