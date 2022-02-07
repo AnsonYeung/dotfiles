@@ -18,7 +18,7 @@ Plug 'tomasiser/vim-code-dark'
 
 Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
 
-Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
@@ -96,7 +96,7 @@ require('nvim-treesitter.configs').setup {
     sync_install = false,
 
     -- List of parsers to ignore installing
-    ignore_install = {},
+    ignore_install = {"latex"},
 
     highlight = {
         -- `false` will disable the whole extension
@@ -185,8 +185,8 @@ if !empty($WSL_INTEROP)
     let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
 endif
 
-let g:vimtex_quickfix_mode=0
-let g:tex_conceal='abdmg'
+" let g:vimtex_quickfix_mode=0
+" let g:tex_conceal='abdmg'
 
 set spelllang=en_us
 autocmd FileType tex setlocal spell
@@ -194,6 +194,7 @@ autocmd FileType tex setlocal conceallevel=1
 autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
 autocmd FileType tex let b:AutoPairs = {}
 autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
+autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
 
 set clipboard=unnamedplus
 if exists('+termguicolors')
