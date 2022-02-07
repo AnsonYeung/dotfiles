@@ -186,7 +186,6 @@ if !empty($WSL_INTEROP)
 endif
 
 " let g:vimtex_quickfix_mode=0
-" let g:tex_conceal='abdmg'
 
 set spelllang=en_us
 autocmd FileType tex setlocal spell
@@ -195,6 +194,7 @@ autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
 autocmd FileType tex let b:AutoPairs = {}
 autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
 autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
+autocmd FileType snippets hi snipLeadingSpaces None
 
 set clipboard=unnamedplus
 if exists('+termguicolors')
