@@ -35,7 +35,7 @@ if [ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; 
 fi
 
 if [ ! -f ~/.gdbinit ]; then
-    wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
+    curl -fsSLo ~/.gdbinit-gef.py http://gef.blah.cat/py
     echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 fi
 
