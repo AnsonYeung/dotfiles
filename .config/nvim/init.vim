@@ -186,7 +186,8 @@ if !empty($WSL_INTEROP)
     let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
 endif
 
-" let g:vimtex_quickfix_mode=0
+" Altho it looks cool, it often messed up snippets
+let g:vimtex_quickfix_mode=0
 
 set spelllang=en_us
 autocmd FileType tex setlocal spell
