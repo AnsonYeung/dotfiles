@@ -190,13 +190,16 @@ endif
 let g:vimtex_quickfix_mode=0
 
 set spelllang=en_us
-autocmd FileType tex setlocal spell
-autocmd FileType tex setlocal conceallevel=2
-autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
-autocmd FileType tex let b:AutoPairs = {}
-autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
-autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
-autocmd FileType snippets hi snipLeadingSpaces None
+augroup texAutocmd
+    autocmd!
+    autocmd FileType tex setlocal spell
+    autocmd FileType tex setlocal conceallevel=2
+    autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
+    autocmd FileType tex let b:AutoPairs = {}
+    autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
+    autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
+    autocmd FileType snippets hi snipLeadingSpaces None
+augroup END
 
 set clipboard=unnamedplus
 if exists('+termguicolors')
@@ -227,13 +230,19 @@ let g:airline_theme='codedark'
 set noshowmatch
 
 set mouse=a
-autocmd BufRead,BufNewFile *.sage set filetype=python
+augroup sageFiletype
+    autocmd!
+    autocmd BufRead,BufNewFile *.sage set filetype=python
+augroup END
 
 " My own keymaps
-autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
-autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
-autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
-autocmd FileType python inoremap <buffer> ++ <space>+=<space>1
+augroup languageAutocmd
+    autocmd!
+    autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
+    autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
+    autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
+    autocmd FileType python inoremap <buffer> ++ <space>+=<space>1
+augroup END
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
