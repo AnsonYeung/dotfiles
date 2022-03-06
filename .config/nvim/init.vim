@@ -198,6 +198,7 @@ augroup texAutocmd
     autocmd FileType tex let b:AutoPairs = {}
     autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
     autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
+    autocmd FileType tex let b:airline_whitespace_disabled = 1
     autocmd FileType snippets hi snipLeadingSpaces None
 augroup END
 
