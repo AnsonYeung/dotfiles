@@ -29,7 +29,7 @@ export EDITOR="nvim"
 export LESS="-F -R $LESS"
 
 if [ ! -z "$WSLENV" ]; then
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    export DISPLAY=$(/mnt/c/Windows/System32/ipconfig.exe | sed -n '/WSL/,+4p' | tail -n 1 | sed -s "s/.*: //" | sed -s "s/\r//"):0
 fi
 
 if [ -f "$HOME/.cargo/env" ] ; then
