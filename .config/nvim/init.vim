@@ -243,6 +243,7 @@ augroup languageAutocmd
     autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
     autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
     autocmd FileType python inoremap <buffer> ++ <space>+=<space>1
+    autocmd FileType python inoremap <buffer> -- <space>-=<space>1
 augroup END
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
