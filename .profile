@@ -57,4 +57,4 @@ silent_background() {
 }
 
 DOTFILES_DIR=~/github/dotfiles
-silent_background sh -c "git -C $DOTFILES_DIR pull >> ~/.dotfiles.log 2>&1"
+silent_background sh -c "git -C $DOTFILES_DIR pull 2>&1 | tee -a ~/.dotfiles.log"
