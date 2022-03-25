@@ -56,5 +56,7 @@ silent_background() {
   disown &>/dev/null  # Close STD{OUT,ERR} to prevent whine if job has already completed
 }
 
-DOTFILES_DIR=~/github/dotfiles
-silent_background sh -c "git -C $DOTFILES_DIR pull 2>&1 | tee -a ~/.dotfiles.log"
+if [[ -n $ZSH_VERSION ]]; then
+    DOTFILES_DIR=~/github/dotfiles
+    source $DOTFILES_DIR/autoupdate.sh
+fi

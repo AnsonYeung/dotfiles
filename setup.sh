@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # oh my zsh will overwrite files on install
 if [ ! -d ${ZSH:-$HOME/.oh-my-zsh} ]; then
@@ -6,23 +6,17 @@ if [ ! -d ${ZSH:-$HOME/.oh-my-zsh} ]; then
 fi
 
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
-
-ensure_install_ohmyzsh_custom() {
-    if [ ! -d $ZSH_CUSTOM/$1 ]; then
-        git clone $2 $ZSH_CUSTOM/$1
-    fi
-}
-
-ensure_install_ohmyzsh_custom themes/powerlevel10k https://github.com/romkatv/powerlevel10k.git
-ensure_install_ohmyzsh_custom plugins/zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git
-ensure_install_ohmyzsh_custom plugins/zsh-vi-mode https://github.com/jeffreytse/zsh-vi-mode.git
-ensure_install_ohmyzsh_custom plugins/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
-ensure_install_ohmyzsh_custom plugins/autoupdate https://github.com/TamCore/autoupdate-oh-my-zsh-plugins.git
-
 SCRIPT_DIR=$(realpath "$(dirname $0)")
 FILES=$(cat $SCRIPT_DIR/fileList.txt)
 
-for i in $FILES; do
+source $SCRIPT_DIR/autoupdatelist.sh
+for plugpath url in ${(kv)autoupdatelist}; do
+    if [ ! -d $plugpath ]; then
+        git clone $url $plugpath
+    fi
+done
+
+for i in ${(f)FILES}; do
     mkdir -p $(dirname ~/$i)
     ln $SCRIPT_DIR/$i ~/$i "$@"
 done

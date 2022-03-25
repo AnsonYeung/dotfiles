@@ -90,7 +90,6 @@ plugins=(
     docker-compose
     fzf
     rust
-    autoupdate
     zsh-autosuggestions
     zsh-syntax-highlighting # must be the last plugin
 )
