@@ -24,7 +24,7 @@ fi
 # set PATH so it includes user's private bin if it exists
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.r2env/bin:$PATH"
-export CP="~/competitive-programming"
+export CP="$HOME/competitive-programming"
 export EDITOR="nvim"
 export LESS="-F -R $LESS"
 
