@@ -1,0 +1,25 @@
+snippet ctfpwn "Basic template" bA
+#!/usr/bin/env python3
+from pwn import *
+context.terminal = ["tmux", "splitw", "-h"]
+name = "./$1"
+e = context.binary = ELF(name)
+if args["debug"]:
+	context.log_level = "DEBUG"
+if args["remote"]:
+	p = remote("$2", $3)
+else:
+	p = process(name)
+	if args["debug"]:
+		gdb.attach(p)
+
+$0
+endsnippet
+
+snippet ctflibc "libc template" bA
+if args["remote"]:
+	libc = ELF("./${1:libc.so.6}")
+else:
+	libc = e.libc
+$0
+endsnippet
