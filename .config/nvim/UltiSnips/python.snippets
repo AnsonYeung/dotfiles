@@ -4,13 +4,11 @@ from pwn import *
 context.terminal = ["tmux", "splitw", "-h"]
 name = "./$1"
 e = context.binary = ELF(name)
-if args["debug"]:
-	context.log_level = "DEBUG"
-if args["remote"]:
+if args["REMOTE"]:
 	p = remote("$2", $3)
 else:
 	p = process(name)
-	if args["debug"]:
+	if args["DEBUG"]:
 		gdb.attach(p)
 
 $0
