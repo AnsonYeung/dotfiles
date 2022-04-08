@@ -8,7 +8,7 @@ if args["REMOTE"]:
 	p = remote("$2", $3)
 else:
 	p = process(name)
-	if args["DEBUG"]:
+	if args["GDB"]:
 		gdb.attach(p)
 
 $0
@@ -20,4 +20,12 @@ if args["remote"]:
 else:
 	libc = e.libc
 $0
+endsnippet
+
+snippet ++ "++" iA
+ += 1
+endsnippet
+
+snippet -- "--" iA
+ -= 1
 endsnippet
