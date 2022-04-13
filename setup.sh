@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# oh my zsh will overwrite files on install
-if [ ! -d ${ZSH:-$HOME/.oh-my-zsh} ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-fi
-
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 SCRIPT_DIR=$(realpath "$(dirname $0)")
 FILES=$(cat $SCRIPT_DIR/fileList.txt)
