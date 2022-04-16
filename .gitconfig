@@ -1,5 +1,10 @@
 [user]
 	name = Anson Yeung
 	email = nanolify@gmail.com
+	signingkey = DBE82B76E11B6816
 [pull]
 	rebase = false
+[gpg]
+	program = gpg2
+[commit]
+	gpgsign = true
