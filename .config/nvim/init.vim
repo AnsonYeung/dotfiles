@@ -194,7 +194,7 @@ augroup texAutocmd
     autocmd!
     autocmd FileType tex setlocal spell
     autocmd FileType tex setlocal conceallevel=2
-    autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
+    autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=A<C-g>u
     autocmd FileType tex let b:AutoPairs = {}
     autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
     autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
