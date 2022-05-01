@@ -9,7 +9,7 @@ if args["REMOTE"]:
 else:
 	p = process(name)
 	if args["GDB"]:
-		gdb.attach(p)
+		gdb.attach(p, "c")
 
 $0
 endsnippet
