@@ -137,6 +137,7 @@ alias l='ls -aCF'
 alias vim="nvim"
 alias dis="objdump --demangle -M intel"
 alias locnomnt="locate -A --regex '^/([^m]|m[^n]|mn[^t]|mnt[^/])'"
+alias pwninit="pwninit --no-template"
 
 function venv() {
     source .venv/bin/activate
