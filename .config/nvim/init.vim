@@ -236,6 +236,14 @@ augroup sageFiletype
     autocmd BufRead,BufNewFile *.sage set filetype=python
 augroup END
 
+augroup restoreCursor
+    autocmd!
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+augroup END
+
 " My own keymaps
 augroup languageAutocmd
     autocmd!
@@ -246,7 +254,6 @@ augroup END
 nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
-nnoremap <leader>vq <cmd>w\|source $MYVIMRC\|bp\|bd #<CR>
 nnoremap <leader>vt :vsplit\|term<CR>A
 nnoremap <leader>b <cmd>bp\|bd #<CR>
 nnoremap <leader>h :tab help<SPACE>
