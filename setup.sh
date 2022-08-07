@@ -4,6 +4,19 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 SCRIPT_DIR=$(realpath "$(dirname $0)")
 FILES=$(cat $SCRIPT_DIR/fileList.txt)
 
+if [ ! -f ~/.gdbinit ]; then
+    curl -fsSLo ~/.gdbinit-gef.py http://gef.blah.cat/py
+    echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+fi
+
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+if [ ! -d ~/.oh-my-zsh ]; then
+    git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh
+fi
+
 source $SCRIPT_DIR/autoupdatelist.sh
 for plugpath url in ${(kv)autoupdatelist}; do
     if [ ! -d $plugpath ]; then
@@ -17,12 +30,3 @@ for i in ${(f)FILES}; do
 done
 
 ln .profile ~/.zprofile -s "$@"
-
-if [ ! -f ~/.gdbinit ]; then
-    curl -fsSLo ~/.gdbinit-gef.py http://gef.blah.cat/py
-    echo source ~/.gdbinit-gef.py >> ~/.gdbinit
-fi
-
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
