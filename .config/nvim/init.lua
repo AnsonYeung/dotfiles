@@ -87,7 +87,7 @@ augroup languageAutocmd
     autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
     autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
 augroup END
-nnoremap <leader>nn <cmd>NERDTreeToggle<CR>
+nnoremap <leader>nn <cmd>NvimTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
 nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
 nnoremap <leader>vt :vsplit\|term<CR>A
