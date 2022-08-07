@@ -18,14 +18,45 @@ return require('packer').startup(function(use)
 
     use 'wbthomason/packer.nvim'
 
-    use {'neovim/nvim-lspconfig', config = 'require[[config.nvim-lspconfig]]'}
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = 'require[[config.nvim-treesitter]]'}
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+        },
+        config = function ()
+            require 'config.nvim-lspconfig'
+        end
+    }
 
-    use {'hrsh7th/cmp-nvim-lsp', config = function() require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities()) end}
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use {'hrsh7th/nvim-cmp', config = 'require[[config.nvim-cmp]]'}
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function ()
+            require 'config.nvim-treesitter'
+        end
+    }
+
+    use {
+        "hrsh7th/nvim-cmp",
+        requires = {
+            {
+                "quangnguyen30192/cmp-nvim-ultisnips",
+                config = function()
+                    -- optional call to setup (see customization section)
+                    require("cmp_nvim_ultisnips").setup{}
+                end,
+                -- If you want to enable filetype detection based on treesitter:
+                requires = { "nvim-treesitter/nvim-treesitter" },
+            },
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-cmdline'},
+        },
+        config = function()
+            require 'config.nvim-cmp'
+        end,
+    }
 
     if not vim.env.TERMUX_VERSION then
         use 'vim-airline/vim-airline'
@@ -47,8 +78,19 @@ return require('packer').startup(function(use)
     }
 
     use 'lervag/vimtex'
-    use 'SirVer/ultisnips'
-    use 'quangnguyen30192/cmp-nvim-ultisnips'
+    use {
+        'SirVer/ultisnips',
+        config = function ()
+            vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
+            vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
+            vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+            vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
+            vim.g.UltiSnipsRemoveSelectModeMappings = 0
+
+            -- If you want :UltiSnipsEdit to split your window.
+            -- let g:UltiSnipsEditSplit="vertical"
+        end
+    }
 
     use 'christoomey/vim-tmux-navigator'
     use 'tpope/vim-surround'
