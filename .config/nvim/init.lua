@@ -72,7 +72,7 @@ augroup sageFiletype
     autocmd BufRead,BufNewFile *.sage set filetype=python
 augroup END
 
-augroup restoreCursor
+augroup restoreCursorPos
     autocmd!
     autocmd BufReadPost *
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'

@@ -7,8 +7,6 @@ end
 
 return require('packer').startup(function(use)
     -- My plugins here
-    -- use 'foo1/bar1.nvim'
-    -- use 'foo2/bar2.nvim'
     use {'neovim/nvim-lspconfig', config = 'require[[config.nvim-lspconfig]]'}
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = 'require[[config.nvim-treesitter]]'}
 
