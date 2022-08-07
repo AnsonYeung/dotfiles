@@ -1,6 +1,4 @@
-.config/nvim/UltiSnips/tex.snippets
-.config/nvim/UltiSnips/python.snippets
-.config/nvim/init.vim
+.config/nvim
 .gitconfig
 .gitignore
 .hushlogin

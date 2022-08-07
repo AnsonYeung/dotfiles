@@ -13,10 +13,10 @@ done
 
 for i in ${(f)FILES}; do
     mkdir -p $(dirname ~/$i)
-    ln $SCRIPT_DIR/$i ~/$i "$@"
+    ln $SCRIPT_DIR/$i ~/$i -s "$@"
 done
 
-ln .profile ~/.zprofile "$@"
+ln .profile ~/.zprofile -s "$@"
 
 if [ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; then
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
