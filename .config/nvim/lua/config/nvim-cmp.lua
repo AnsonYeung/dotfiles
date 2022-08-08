@@ -24,28 +24,28 @@ cmp.setup({
             c = cmp.mapping.close(),
         }),
         ["<C-n>"] = cmp.mapping(
-        function(fallback)
-            cmp_ultisnips_mappings.compose { "select_next_item" }(fallback)
-        end,
-        { "i", "s", "c" }
+            function(fallback)
+                cmp_ultisnips_mappings.compose { "select_next_item" } (fallback)
+            end,
+            { "i", "s", "c" }
         ),
         ["<C-p>"] = cmp.mapping(
-        function(fallback)
-            cmp_ultisnips_mappings.compose { "select_prev_item" }(fallback)
-        end,
-        { "i", "s", "c" }
+            function(fallback)
+                cmp_ultisnips_mappings.compose { "select_prev_item" } (fallback)
+            end,
+            { "i", "s", "c" }
         ),
         ["<Tab>"] = cmp.mapping(
-        function(fallback)
-            cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
-        end,
-        { "i", "s", "c" }
+            function(fallback)
+                cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+            end,
+            { "i", "s", "c" }
         ),
         ["<S-Tab>"] = cmp.mapping(
-        function(fallback)
-            cmp_ultisnips_mappings.jump_backwards(fallback)
-        end,
-        { "i", "s", "c" }
+            function(fallback)
+                cmp_ultisnips_mappings.jump_backwards(fallback)
+            end,
+            { "i", "s", "c" }
         ),
     },
 })

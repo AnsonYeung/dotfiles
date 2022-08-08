@@ -1,5 +1,17 @@
-
 require 'plugins'
+
+local function lspSymbol(name, icon)
+    vim.fn.sign_define(
+        'DiagnosticSign' .. name,
+        { text = icon, numhl = 'DiagnosticDefault' .. name }
+    )
+end
+
+lspSymbol('Error', '')
+lspSymbol('Information', '')
+lspSymbol('Hint', '')
+lspSymbol('Info', '')
+lspSymbol('Warning', '')
 
 vim.cmd([[
 
@@ -53,8 +65,6 @@ let g:airline_powerline_fonts = 1
 let g:tmux_navigator_save_on_switch = 2
 
 set background=dark
-colorscheme codedark
-let g:airline_theme='codedark'
 set noshowmatch
 
 set mouse=a
@@ -72,6 +82,7 @@ augroup restoreCursorPos
 augroup END
 
 " My own keymaps
+let mapleader=" "
 augroup languageAutocmd
     autocmd!
     autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
