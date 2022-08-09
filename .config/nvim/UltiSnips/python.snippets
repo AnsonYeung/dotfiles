@@ -15,7 +15,7 @@ $0
 endsnippet
 
 snippet ctflibc "libc template" bA
-if args["remote"]:
+if args["REMOTE"]:
 	libc = ELF("./${1:libc.so.6}")
 else:
 	libc = e.libc

@@ -47,6 +47,7 @@ cmp.setup({
             end,
             { "i", "s", "c" }
         ),
+        ["<CR>"] = cmp.mapping.confirm({ select = false })
     },
 })
 
