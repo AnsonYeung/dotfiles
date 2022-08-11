@@ -47,7 +47,8 @@ cmp.setup({
             end,
             { "i", "s", "c" }
         ),
-        ["<CR>"] = cmp.mapping.confirm({ select = false })
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        ["<A-CR>"] = cmp.mapping.confirm({ select = true })
     },
 })
 
