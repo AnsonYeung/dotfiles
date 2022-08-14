@@ -88,6 +88,7 @@ augroup languageAutocmd
     autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
     autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
     autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
+    autocmd FileType rust vmap <buffer> D S)idbg!<ESC>
 augroup END
 nnoremap <leader>nn <cmd>NvimTreeToggle<CR>
 nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
