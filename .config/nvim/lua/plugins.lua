@@ -101,7 +101,11 @@ return require('packer').startup(function(use)
         tag = 'nightly', -- optional, updated every week. (see issue #1193)
         cmd = { 'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile', 'NvimTreeCollapse' },
         config = function()
-            require('nvim-tree').setup()
+            require('nvim-tree').setup({
+                filters = {
+                    custom = { "^.git$" }
+                }
+            })
         end
     }
 
