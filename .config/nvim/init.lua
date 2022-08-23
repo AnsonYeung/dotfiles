@@ -3,15 +3,14 @@ require 'plugins'
 local function lspSymbol(name, icon)
     vim.fn.sign_define(
         'DiagnosticSign' .. name,
-        { text = icon, numhl = 'DiagnosticDefault' .. name }
+        { texthl = 'DiagnosticSign' .. name, text = icon, numhl = 'Diagnostic' .. name }
     )
 end
 
-lspSymbol('Error', '')
-lspSymbol('Information', '')
-lspSymbol('Hint', '')
-lspSymbol('Info', '')
-lspSymbol('Warning', '')
+lspSymbol('Error', '')
+lspSymbol('Warning', '')
+lspSymbol('Hint', '')
+lspSymbol('Info', '')
 
 vim.cmd([[
 
@@ -57,6 +56,7 @@ set autowrite
 set splitright
 set notimeout ttimeout
 set scrolloff=3
+set signcolumn=yes
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1

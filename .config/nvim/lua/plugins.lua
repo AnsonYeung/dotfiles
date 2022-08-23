@@ -22,7 +22,8 @@ return require('packer').startup(function(use)
     use {
         'neovim/nvim-lspconfig',
         requires = {
-            'hrsh7th/cmp-nvim-lsp'
+            'hrsh7th/cmp-nvim-lsp',
+            'lukas-reineke/lsp-format.nvim'
         },
         config = function()
             require 'config.nvim-lspconfig'
@@ -73,11 +74,6 @@ return require('packer').startup(function(use)
     }
 
     --[[
-    use 'morhetz/gruvbox'
-    use 'folke/lsp-colors.nvim'
-    --]]
-
-    --[[
     use({
         "glepnir/lspsaga.nvim",
         branch = "main",
@@ -86,12 +82,36 @@ return require('packer').startup(function(use)
 
             saga.init_lsp_saga({
                 -- your configuration
-                diagnostic_header = { " ", " ", " ", "ﴞ " },
-                code_action_icon = "💡",
             })
         end,
     })
     --]]
+
+    use({
+        "nvim-telescope/telescope.nvim",
+        requires = { { "nvim-lua/plenary.nvim" }, { "kdheepak/lazygit.nvim" } },
+        config = function()
+            require("telescope").load_extension("lazygit")
+
+            local lgGrp = vim.api.nvim_create_augroup("lazygit", { clear = true })
+            vim.api.nvim_create_autocmd("BufEnter", {
+                command = "silent! lua require('lazygit.utils').project_root_dir()",
+                group = lgGrp
+            })
+
+            vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua require('telescope').extensions.lazygit.lazygit()<cr>",
+                { noremap = true })
+        end,
+    })
+
+    use {
+        'kyazdani42/nvim-web-devicons',
+        config = function()
+            require('nvim-web-devicons').setup {
+                default = true
+            }
+        end
+    }
 
     use {
         'kyazdani42/nvim-tree.lua',
@@ -101,11 +121,11 @@ return require('packer').startup(function(use)
         tag = 'nightly', -- optional, updated every week. (see issue #1193)
         cmd = { 'NvimTreeToggle', 'NvimTreeFocus', 'NvimTreeFindFile', 'NvimTreeCollapse' },
         config = function()
-            require('nvim-tree').setup({
+            require('nvim-tree').setup {
                 filters = {
                     custom = { "^.git$" }
                 }
-            })
+            }
         end
     }
 
@@ -140,8 +160,6 @@ return require('packer').startup(function(use)
     use 'christoomey/vim-tmux-navigator'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
-
-    use 'jiangmiao/auto-pairs'
     use 'tpope/vim-endwise'
 
     -- Automatically set up your configuration after cloning packer.nvim
