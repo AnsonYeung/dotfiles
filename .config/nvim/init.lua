@@ -30,6 +30,7 @@ vim.g.vimtex_quickfix_mode = 0
 vim.o.spelllang = 'en_us'
 
 local texGp = vim.api.nvim_create_augroup('tex-autocmd', { clear = true })
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'tex',
     callback = function(autocmd)
@@ -49,14 +50,14 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
     group = texGp
 })
-vim.api.nvim_create_autocmd('FileType snippets', {
+
+vim.api.nvim_create_autocmd('FileType', {
     pattern = 'snippets',
     command = 'hi snipLeadingSpaces None',
     group = texGp
 })
 
 -- General configuration
-
 if vim.fn.exists('+termguicolors') then
     vim.o.termguicolors = true
 end
@@ -67,10 +68,10 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.tabstop = 4
 vim.o.softtabstop = 0
-vim.o.expandtab = true
 vim.o.shiftwidth = 4
+vim.o.expandtab = true
 vim.o.smarttab = true
-vim.o.autowrite = true
+vim.o.autowrite = true -- not autosave, save on :make or similar commands
 vim.o.splitright = true
 vim.o.timeout = false
 vim.o.ttimeout = true
@@ -80,40 +81,52 @@ vim.o.background = 'dark'
 vim.o.showmatch = false
 vim.o.mouse = 'a'
 
+vim.keymap.set('n', '<leader>nn', '<cmd>NvimTreeToggle<CR>', {})
+vim.keymap.set('n', '<leader>vv', '<cmd>e $MYVIMRC<CR>', {})
+vim.keymap.set('n', '<leader>vr', '<cmd>source $MYVIMRC<CR>', {})
+vim.keymap.set('n', '<leader>vt', ':vsplit|term<CR>A', {})
+vim.keymap.set('n', '<leader>b', '<cmd>bp|bd #<CR>', {})
+vim.keymap.set('n', '<leader>h', ':tab help ', {})
+
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g.airline_powerline_fonts = 1
 
 -- Write all on tmux switch
 vim.g.tmux_navigator_save_on_switch = 2
 
-vim.cmd([[
+-- Misc language config
+local miscGp = vim.api.nvim_create_augroup('misc-autocmd', { clear = true })
 
-augroup sageFiletype
-    autocmd!
-    autocmd BufRead,BufNewFile *.sage set filetype=python
-augroup END
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = '*.sage',
+    callback = function(_)
+        vim.bo.filetype = 'python'
+    end,
+    group = miscGp
+})
 
-augroup restoreCursorPos
-    autocmd!
-    autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-      \ |   exe "normal! g`\""
-      \ | endif
-augroup END
+vim.api.nvim_create_autocmd('BufReadPost', {
+    command = [[
+        if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+           exe "normal! g`\""
+        endif
+    ]],
+    group = miscGp
+})
 
-" My own keymaps
-augroup languageAutocmd
-    autocmd!
-    autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
-    autocmd FileType rust nnoremap <buffer> <leader>m <cmd>!cargo test<CR>
-    autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', '"""':'"""', "'''":"'''", "<":">"}
-    autocmd FileType rust vmap <buffer> D S)idbg!<ESC>
-augroup END
-nnoremap <leader>nn <cmd>NvimTreeToggle<CR>
-nnoremap <leader>vv <cmd>e $MYVIMRC<CR>
-nnoremap <leader>vr <cmd>source $MYVIMRC<CR>
-nnoremap <leader>vt :vsplit\|term<CR>A
-nnoremap <leader>b <cmd>bp\|bd #<CR>
-nnoremap <leader>h :tab help<SPACE>
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'cpp',
+    callback = function(autocmd)
+        vim.keymap.set('n', '<leader>m', '<cmd>make! -j run<CR>', { buffer = autocmd.buf })
+    end,
+    group = miscGp
+})
 
-]])
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'rust',
+    callback = function(autocmd)
+        vim.keymap.set('n', '<leader>m', '<cmd>!cargo test<CR>', { buffer = autocmd.buf })
+        vim.keymap.set('v', 'D', 'S)idbg!<ESC>', { buffer = autocmd.buf, remap = true })
+    end,
+    group = miscGp
+})
