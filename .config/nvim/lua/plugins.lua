@@ -99,7 +99,12 @@ return require('packer').startup(function(use)
                 group = lgGrp
             })
 
+            --[[
             vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua require('telescope').extensions.lazygit.lazygit()<cr>",
+                { noremap = true })
+            --]]
+
+            vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>LazyGit<cr>",
                 { noremap = true })
         end,
     })
