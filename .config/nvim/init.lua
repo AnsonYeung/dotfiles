@@ -27,19 +27,33 @@ vim.g.vimtex_quickfix_mode = 0
 
 vim.o.spelllang = 'en_us'
 
-vim.cmd([[
+local texGp = vim.api.nvim_create_augroup('tex-autocmd', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'tex',
+    callback = function(autocmd)
+        vim.wo.spell = true
+        vim.wo.conceallevel = 2
+        vim.api.nvim_buf_set_keymap(autocmd.buf, 'i', '<C-l>', '<C-g>u<ESC>[s1z=A<C-g>u', {})
+        vim.api.nvim_buf_set_keymap(autocmd.buf, 'n', '<leader>le', '<cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>',
+            {})
+        if not vim.bo.readonly then
+            vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave' }, {
+                callback = function()
+                    vim.cmd("silent! write")
+                end
+            })
+        end
+        vim.b.airline_whitespace_disabled = 1
+    end,
+    group = texGp
+})
+vim.api.nvim_create_autocmd('FileType snippets', {
+    pattern = 'snippets',
+    command = 'hi snipLeadingSpaces None',
+    group = texGp
+})
 
-augroup texAutocmd
-    autocmd!
-    autocmd FileType tex setlocal spell
-    autocmd FileType tex setlocal conceallevel=2
-    autocmd FileType tex inoremap <buffer> <C-l> <C-g>u<ESC>[s1z=A<C-g>u
-    autocmd FileType tex let b:AutoPairs = {}
-    autocmd FileType tex autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
-    autocmd FileType tex nnoremap <buffer> <leader>le <cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>
-    autocmd FileType tex let b:airline_whitespace_disabled = 1
-    autocmd FileType snippets hi snipLeadingSpaces None
-augroup END
+vim.cmd([[
 
 set clipboard=unnamedplus
 if exists('+termguicolors')
