@@ -13,7 +13,9 @@ lspSymbol('Hint', '')
 lspSymbol('Info', '')
 
 vim.o.completeopt = 'menu,menuone,noselect'
+vim.g.mapleader = ' '
 
+-- latex configuration
 vim.g.tex_flavor = 'latex'
 vim.g.tex_conceal = 'abdmg'
 
@@ -53,36 +55,39 @@ vim.api.nvim_create_autocmd('FileType snippets', {
     group = texGp
 })
 
+-- General configuration
+
+if vim.fn.exists('+termguicolors') then
+    vim.o.termguicolors = true
+end
+
+vim.o.clipboard = 'unnamedplus'
+vim.o.undofile = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 0
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.smarttab = true
+vim.o.autowrite = true
+vim.o.splitright = true
+vim.o.timeout = false
+vim.o.ttimeout = true
+vim.o.scrolloff = 3
+vim.o.signcolumn = 'yes'
+vim.o.background = 'dark'
+vim.o.showmatch = false
+vim.o.mouse = 'a'
+
+vim.g['airline#extensions#tabline#enabled'] = 1
+vim.g.airline_powerline_fonts = 1
+
+-- Write all on tmux switch
+vim.g.tmux_navigator_save_on_switch = 2
+
 vim.cmd([[
 
-set clipboard=unnamedplus
-if exists('+termguicolors')
-    set termguicolors
-endif
-
-set undofile
-set number relativenumber
-set tabstop=4
-set softtabstop=0
-set expandtab
-set shiftwidth=4
-set smarttab
-set autowrite
-set splitright
-set notimeout ttimeout
-set scrolloff=3
-set signcolumn=yes
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-" write all on tmux switch
-let g:tmux_navigator_save_on_switch = 2
-
-set background=dark
-set noshowmatch
-
-set mouse=a
 augroup sageFiletype
     autocmd!
     autocmd BufRead,BufNewFile *.sage set filetype=python
@@ -97,7 +102,6 @@ augroup restoreCursorPos
 augroup END
 
 " My own keymaps
-let mapleader=" "
 augroup languageAutocmd
     autocmd!
     autocmd FileType cpp nnoremap <buffer> <leader>m <cmd>make! -j run<CR>
