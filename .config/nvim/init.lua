@@ -12,22 +12,23 @@ lspSymbol('Warning', '')
 lspSymbol('Hint', '')
 lspSymbol('Info', '')
 
+vim.o.completeopt = 'menu,menuone,noselect'
+
+vim.g.tex_flavor = 'latex'
+vim.g.tex_conceal = 'abdmg'
+
+if vim.env.WSL_INTEROP then
+    vim.g.vimtex_view_general_viewer = 'sumatra'
+    vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
+end
+
+-- Altho it looks cool, it often messed up snippets
+vim.g.vimtex_quickfix_mode = 0
+
+vim.o.spelllang = 'en_us'
+
 vim.cmd([[
 
-set completeopt=menu,menuone,noselect
-
-let g:tex_flavor='latex'
-let g:tex_conceal='abdmg'
-
-if !empty($WSL_INTEROP)
-    let g:vimtex_view_general_viewer = 'sumatra'
-    let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
-endif
-
-" Altho it looks cool, it often messed up snippets
-let g:vimtex_quickfix_mode=0
-
-set spelllang=en_us
 augroup texAutocmd
     autocmd!
     autocmd FileType tex setlocal spell
