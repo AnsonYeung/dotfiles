@@ -91,7 +91,8 @@ return require('packer').startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/plenary.nvim" }, { "kdheepak/lazygit.nvim" } },
         config = function()
-            require("telescope").load_extension("lazygit")
+            local telescope = require("telescope")
+            telescope.load_extension("lazygit")
 
             local lgGrp = vim.api.nvim_create_augroup("lazygit", { clear = true })
             vim.api.nvim_create_autocmd("BufEnter", {
@@ -106,6 +107,9 @@ return require('packer').startup(function(use)
 
             vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>LazyGit<cr>",
                 { noremap = true })
+
+            vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, {})
+            vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})
         end,
     })
 
