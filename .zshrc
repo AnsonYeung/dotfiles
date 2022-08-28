@@ -140,7 +140,15 @@ alias locnomnt="locate -A --regex '^/([^m]|m[^n]|mn[^t]|mnt[^/])'"
 alias pwninit="pwninit --no-template"
 
 function venv() {
-    source .venv/bin/activate
+    local p=$(pwd)
+    while [[ $p != / ]]; do
+        if [ -d "$p/.venv" ]; then
+            source "$p/.venv/bin/activate"
+            return
+        fi
+        p="$(readlink -f "$p"/..)"
+    done
+    echo "${ZSH_ARGZERO}: venv not found" 1>&2
 }
 
 TIMEFMT=$'time %J\nuser\t%mU\nsystem\t%mS\ntotal\t%mE (%P cpu)'
