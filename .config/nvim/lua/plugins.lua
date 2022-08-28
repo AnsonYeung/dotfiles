@@ -60,16 +60,40 @@ return require('packer').startup(function(use)
         end,
     }
 
-    if not vim.env.TERMUX_VERSION then
-        use 'vim-airline/vim-airline'
-        use 'vim-airline/vim-airline-themes'
-    end
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v2.*",
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require 'bufferline'.setup {}
+        end
+    }
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        config = function()
+            require('lualine').setup {
+                options = {
+                    theme = 'codedark'
+                }
+            }
+        end
+    }
+
+    --[[
+    use {
+        'rmehri01/onenord.nvim',
+        config = function()
+            vim.cmd 'colorscheme onenord'
+        end
+    }
+    --]]
 
     use {
         'tomasiser/vim-code-dark',
         config = function()
             vim.cmd 'colorscheme codedark'
-            vim.g.airline_theme = 'codedark'
         end
     }
 
