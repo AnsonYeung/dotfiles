@@ -81,21 +81,28 @@ return require('packer').startup(function(use)
         end
     }
 
-    --[[
     use {
-        'rmehri01/onenord.nvim',
+        'airblade/vim-gitgutter',
         config = function()
-            vim.cmd 'colorscheme onenord'
+            vim.o.updatetime = 100
         end
     }
-    --]]
 
+    use {
+        'joshdick/onedark.vim',
+        config = function()
+            vim.cmd 'colorscheme onedark'
+        end
+    }
+
+    --[[
     use {
         'tomasiser/vim-code-dark',
         config = function()
             vim.cmd 'colorscheme codedark'
         end
     }
+    --]]
 
     --[[
     use({

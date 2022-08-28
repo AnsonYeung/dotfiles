@@ -8,7 +8,7 @@ local function lspSymbol(name, icon)
 end
 
 lspSymbol('Error', '')
-lspSymbol('Warning', '')
+lspSymbol('Warn', '')
 lspSymbol('Hint', '')
 lspSymbol('Info', '')
 
@@ -76,7 +76,7 @@ vim.o.splitright = true
 vim.o.timeout = false
 vim.o.ttimeout = true
 vim.o.scrolloff = 3
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'yes:2'
 vim.o.background = 'dark'
 vim.o.showmatch = false
 vim.o.mouse = 'a'
