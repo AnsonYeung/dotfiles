@@ -86,7 +86,7 @@ vim.keymap.set('n', '<leader>vv', '<cmd>e $MYVIMRC<CR>', {})
 vim.keymap.set('n', '<leader>vr', '<cmd>source $MYVIMRC<CR>', {})
 vim.keymap.set('n', '<leader>vt', ':vsplit|term<CR>A', {})
 vim.keymap.set('n', '<leader>b', '<cmd>bp|bd #<CR>', {})
-vim.keymap.set('n', '<leader>h', ':tab help ', {})
+vim.keymap.set('c', 'h ', 'tab help ', {})
 
 vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g.airline_powerline_fonts = 1
