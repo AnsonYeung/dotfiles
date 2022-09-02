@@ -81,6 +81,7 @@ return require('packer').startup(function(use)
         end
     }
 
+    vim.g.gitgutter_map_keys = false
     use {
         'airblade/vim-gitgutter',
         config = function()
