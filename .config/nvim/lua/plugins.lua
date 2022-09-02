@@ -8,12 +8,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd [[packadd packer.nvim]]
 end
 
-vim.cmd [[
-augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]]
+local packerGp = vim.api.nvim_create_augroup('packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = 'plugins.lua',
+    command = 'source <afile> | PackerCompile',
+    group = packerGp
+})
 
 return require('packer').startup(function(use)
 
@@ -201,7 +201,18 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-endwise'
-    use 'rstacruz/vim-closer'
+    use {
+        'jiangmiao/auto-pairs',
+        config = function()
+            vim.g.AutoPairsMultilineClose = false
+            local autopairGp = vim.api.nvim_create_augroup('rust-auto-pairs', { clear = true })
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'rust',
+                command = "let b:AutoPairs = {'(':')', '[':']', '{':'}', '\"':'\"', '`':'`', '```':'```', 'r#\"':'\"#', 'r##\"':'\"##', '\\w\\zs<': '>'}",
+                group = autopairGp
+            })
+        end
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
