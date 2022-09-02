@@ -73,7 +73,8 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 vim.o.autowrite = true -- not autosave, save on :make or similar commands
 vim.o.splitright = true
-vim.o.timeout = false
+vim.o.timeout = true
+vim.o.timeoutlen = 100
 vim.o.ttimeout = true
 vim.o.scrolloff = 3
 vim.o.signcolumn = 'yes:2'
@@ -86,6 +87,7 @@ vim.keymap.set('n', '<leader>vv', '<cmd>e $MYVIMRC<CR>', {})
 vim.keymap.set('n', '<leader>vr', '<cmd>source $MYVIMRC<CR>', {})
 vim.keymap.set('n', '<leader>vt', ':vsplit|term<CR>A', {})
 vim.keymap.set('n', '<leader>b', '<cmd>bp|bd #<CR>', {})
+vim.keymap.set('c', 'h', 'h', {})
 vim.keymap.set('c', 'h ', 'tab help ', {})
 
 vim.g['airline#extensions#tabline#enabled'] = 1
