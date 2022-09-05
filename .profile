@@ -27,6 +27,7 @@ export PATH="$HOME/.r2env/bin:$PATH"
 export CP="$HOME/competitive-programming"
 export EDITOR="nvim"
 export LESS="-F -R $LESS"
+export MAKEFLAGS="-j $(nproc)"
 
 if [ ! -z "$WSLENV" ]; then
     # export DISPLAY=$(/mnt/c/Windows/System32/ipconfig.exe | sed -n '/WSL/,+4p' | head -n 5 | tail -n 1 | sed -s "s/.*: //" | sed -s "s/\r//"):0
