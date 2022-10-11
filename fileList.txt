@@ -7,3 +7,4 @@
 .zlogout
 .zshrc
 .clang-format
+.latexmkrc
