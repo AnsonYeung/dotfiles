@@ -212,6 +212,12 @@ return require('packer').startup(function(use)
                 command = "let b:AutoPairs = {'(':')', '[':']', '{':'}', '\"':'\"', '`':'`', '```':'```', 'r#\"':'\"#', 'r##\"':'\"##', '\\w\\zs<': '>'}",
                 group = autopairGp
             })
+
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'tex',
+                command = "let b:autopairs_enabled = 0",
+                group = autopairGp
+            })
         end
     }
 
