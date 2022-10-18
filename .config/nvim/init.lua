@@ -81,6 +81,7 @@ vim.o.signcolumn = 'yes:2'
 vim.o.background = 'dark'
 vim.o.showmatch = false
 vim.o.mouse = 'a'
+vim.o.nrformats = vim.o.nrformats .. ',alpha'
 
 vim.keymap.set('n', '<leader>nn', '<cmd>NvimTreeToggle<CR>', {})
 vim.keymap.set('n', '<leader>vv', '<cmd>e $MYVIMRC<CR>', {})
