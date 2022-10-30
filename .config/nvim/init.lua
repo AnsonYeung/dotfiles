@@ -108,6 +108,14 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     group = miscGp
 })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = '*.tpp',
+    callback = function(_)
+        vim.bo.filetype = 'cpp'
+    end,
+    group = miscGp
+})
+
 vim.api.nvim_create_autocmd('BufReadPost', {
     command = [[
         if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
