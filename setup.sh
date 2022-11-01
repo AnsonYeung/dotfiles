@@ -9,20 +9,13 @@ if [ ! -f ~/.gdbinit ]; then
     echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 fi
 
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-    git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-if [ ! -d ~/.oh-my-zsh ]; then
-    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh
-fi
-
-source $SCRIPT_DIR/autoupdatelist.sh
-for plugpath url in ${(kv)autoupdatelist}; do
-    if [ ! -d $plugpath ]; then
-        git clone --filter=blob:none $url $plugpath
+gitdir_add() {
+    if [ ! -d $1 ]; then
+        git clone --filter=blob:none $2 $1
     fi
-done
+}
+
+source $SCRIPT_DIR/gitdir_list.sh
 
 for i in ${(f)FILES}; do
     mkdir -p $(dirname ~/$i)
