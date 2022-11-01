@@ -20,7 +20,7 @@ fi
 source $SCRIPT_DIR/autoupdatelist.sh
 for plugpath url in ${(kv)autoupdatelist}; do
     if [ ! -d $plugpath ]; then
-        git clone --depth=1 $url $plugpath
+        git clone --filter=blob:none $url $plugpath
     fi
 done
 
