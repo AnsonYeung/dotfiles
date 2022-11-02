@@ -27,13 +27,12 @@ end
 -- Altho it looks cool, it often messed up snippets
 vim.g.vimtex_quickfix_mode = 0
 
-vim.o.spelllang = 'en_us'
-
 local texGp = vim.api.nvim_create_augroup('tex-autocmd', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'tex',
     callback = function(autocmd)
+        vim.o.spelllang = 'en_us'
         vim.wo.spell = true
         vim.wo.conceallevel = 2
         vim.api.nvim_buf_set_keymap(autocmd.buf, 'i', '<C-l>', '<C-g>u<ESC>[s1z=A<C-g>u', {})
