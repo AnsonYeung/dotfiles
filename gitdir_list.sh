@@ -8,3 +8,7 @@ gitdir_add $ZSH_CUSTOM/themes/powerlevel10k https://github.com/romkatv/powerleve
 gitdir_add $ZSH_CUSTOM/plugins/zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git
 gitdir_add $ZSH_CUSTOM/plugins/zsh-vi-mode https://github.com/jeffreytse/zsh-vi-mode.git
 gitdir_add $ZSH_CUSTOM/plugins/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+if [ -f $HOME/extra_gitdir.sh ]; then
+    source $HOME/extra_gitdir.sh
+fi
