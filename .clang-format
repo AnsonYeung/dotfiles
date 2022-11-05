@@ -1,4 +1,4 @@
 BasedOnStyle: Google
-DerivePointerAligment: false
+DerivePointerAlignment: false
 PointerAlignment: Right
 IndentWidth: 4
