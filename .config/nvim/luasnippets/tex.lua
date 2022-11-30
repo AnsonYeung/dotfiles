@@ -30,7 +30,7 @@ $0
     ls.parser.parse_snippet({ trig = 'beg' }, '\\begin{$1}\n$2\n\\end{$1}\n'),
     ls.parser.parse_snippet({ trig = 'ali' }, '\\begin{align*}\n$1\n\\end{align*}\n'),
 
-    s({ trig = '([%d|%a|\\]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { f(
+    s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { f(
         function(_, snip)
             return snip.captures[1]
         end
