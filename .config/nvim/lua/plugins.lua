@@ -41,15 +41,7 @@ return require('packer').startup(function(use)
     use {
         "hrsh7th/nvim-cmp",
         requires = {
-            {
-                "quangnguyen30192/cmp-nvim-ultisnips",
-                config = function()
-                    -- optional call to setup (see customization section)
-                    require("cmp_nvim_ultisnips").setup {}
-                end,
-                -- If you want to enable filetype detection based on treesitter:
-                requires = { "nvim-treesitter/nvim-treesitter" },
-            },
+            { "saadparwaiz1/cmp_luasnip" },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
@@ -185,16 +177,10 @@ return require('packer').startup(function(use)
 
     use 'lervag/vimtex'
     use {
-        'SirVer/ultisnips',
+        "L3MON4D3/LuaSnip",
+        tag = "v1.*",
         config = function()
-            vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
-            vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
-            vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
-            vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
-            vim.g.UltiSnipsRemoveSelectModeMappings = 0
-
-            -- If you want :UltiSnipsEdit to split your window.
-            -- let g:UltiSnipsEditSplit="vertical"
+            require 'config.luasnip'
         end
     }
 
