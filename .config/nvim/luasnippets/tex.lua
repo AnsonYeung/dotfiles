@@ -29,6 +29,12 @@ $0
     ls.parser.parse_snippet({ trig = 'dm' }, '\\[\n$1\n.\\]'),
     ls.parser.parse_snippet({ trig = 'beg' }, '\\begin{$1}\n$2\n\\end{$1}\n'),
     ls.parser.parse_snippet({ trig = 'ali' }, '\\begin{align*}\n$1\n\\end{align*}\n'),
+    ls.parser.parse_snippet({ trig = 'enum' }, '\\begin{enumerate}\n$1\n\\end{enumerate}\n'),
+    ls.parser.parse_snippet({ trig = 'sr', wordTrig = false }, '^2'),
+    ls.parser.parse_snippet({ trig = 'cb', wordTrig = false }, '^3'),
+    ls.parser.parse_snippet({ trig = 'td', wordTrig = false }, '^{$1}'),
+    ls.parser.parse_snippet({ trig = 'sq' }, '\\sqrt{$1}'),
+    ls.parser.parse_snippet({ trig = 'vec' }, '\\vec{$1}'),
 
     s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { f(
         function(_, snip)

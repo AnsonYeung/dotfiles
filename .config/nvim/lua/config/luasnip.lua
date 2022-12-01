@@ -1,8 +1,9 @@
 local ls = require("luasnip")
 
-ls.config.set_config({
+ls.setup({
     history = true,
     enable_autosnippets = true,
+    ft_func = require("luasnip.extras.filetype_functions").from_cursor
 })
 
 require("luasnip.loaders.from_lua").load({ paths = "./luasnippets" })
