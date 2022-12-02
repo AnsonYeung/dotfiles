@@ -8,6 +8,22 @@ local function math()
     return vim.api.nvim_eval('vimtex#syntax#in_mathzone()') == 1
 end
 
+local function last_paren_match(s)
+    local count = 0
+    for i = #s, 1, -1 do
+        local c = s:sub(i, i)
+        if c == '(' then
+            count = count - 1
+            if count == 0 then
+                return i
+            end
+        elseif c == ')' then
+            count = count + 1
+        end
+    end
+    return 0
+end
+
 return {
     ls.parser.parse_snippet({ trig = 'template' }, [[
 \documentclass[a4paper]{article}
@@ -46,5 +62,33 @@ $0
                 return snip.captures[1]
             end
         ), i(1) }, { delimiters = '<>' }),
+        { condition = math }),
+
+    s({ trig = '(%(.*%))/', regTrig = true },
+        fmt([[<>{<>}]], { f(
+            function(_, snip)
+                local match = snip.captures[1]
+                local pos = last_paren_match(match)
+                return match:sub(1, pos - 1) .. "\\frac{" .. match:sub(pos + 1, #match - 1) .. "}"
+            end
+        ), i(1) }, { delimiters = '<>' }),
+        { condition = function(_, _, captures)
+            return last_paren_match(captures[1]) ~= 0
+        end }),
+
+    s({ trig = '(%a)(%d)', regTrig = true },
+        fmt('{}_{}', { f(function(_, snip)
+            return snip.captures[1]
+        end), f(function(_, snip)
+            return snip.captures[2]
+        end) }),
+        { condition = math }),
+
+    s({ trig = '(%a)_(%d%d)', regTrig = true },
+        fmt('{}_{{{}}}', { f(function(_, snip)
+            return snip.captures[1]
+        end), f(function(_, snip)
+            return snip.captures[2]
+        end) }),
         { condition = math }),
 }
