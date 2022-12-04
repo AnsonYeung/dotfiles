@@ -21,7 +21,7 @@ vim.g.tex_conceal = 'abdmg'
 
 if vim.env.WSL_INTEROP then
     vim.g.vimtex_view_general_viewer = 'sumatra'
-    vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line `wslpath -w @pdf`'
+    vim.g.vimtex_view_general_options = '-reuse-instance -forward-search `wslpath -w @tex | sed "s/\\\\wsl$\\Ubuntu/D:\\secur\\wsl-ubuntu/"` @line `wslpath -w @pdf | sed "s/\\\\wsl$\\Ubuntu/D:\\secur\\wsl-ubuntu/"`'
 end
 
 -- Altho it looks cool, it often messed up snippets
