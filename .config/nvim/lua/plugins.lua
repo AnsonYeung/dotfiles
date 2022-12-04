@@ -192,7 +192,7 @@ return require('packer').startup(function(use)
         'jiangmiao/auto-pairs',
         config = function()
             vim.g.AutoPairsMultilineClose = false
-            local autopairGp = vim.api.nvim_create_augroup('rust-auto-pairs', { clear = true })
+            local autopairGp = vim.api.nvim_create_augroup('auto-pairs', { clear = true })
             vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'rust',
                 command = "let b:AutoPairs = {'(':')', '[':']', '{':'}', '\"':'\"', '`':'`', '```':'```', 'r#\"':'\"#', 'r##\"':'\"##', '\\w\\zs<': '>'}",
@@ -203,6 +203,19 @@ return require('packer').startup(function(use)
                 pattern = 'tex',
                 command = "let b:autopairs_enabled = 0",
                 group = autopairGp
+            })
+        end
+    }
+
+    use {
+        '907th/vim-auto-save',
+        config = function()
+            local autosaveGp = vim.api.nvim_create_augroup('auto-save', { clear = true })
+            vim.cmd [[ let g:auto_save_events = ["TextChanged", "TextChangedI"] ]]
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'tex',
+                command = 'let b:auto_save = 1',
+                group = autosaveGp
             })
         end
     }

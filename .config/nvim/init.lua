@@ -36,13 +36,6 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.wo.spell = true
         vim.wo.conceallevel = 2
         vim.api.nvim_buf_set_keymap(autocmd.buf, 'i', '<C-l>', '<C-g>u<ESC>[s1z=A<C-g>u', {})
-        if not vim.bo.readonly then
-            vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
-                callback = function()
-                    vim.cmd("silent! write")
-                end
-            })
-        end
         vim.b.airline_whitespace_disabled = 1
     end,
     group = texGp
