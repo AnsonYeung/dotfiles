@@ -21,13 +21,12 @@ cmp.setup({
     },
     -- recommended configuration for <Tab> people:
     mapping = {
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 's', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 's', 'c' }),
         ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ['<C-e>'] = cmp.mapping({
             i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
+            c = cmp.mapping.abort(),
         }),
         ["<C-n>"] = cmp.mapping(
             function(fallback)
@@ -41,22 +40,44 @@ cmp.setup({
             end,
             { "i", "s", "c" }
         ),
-        ["<Tab>"] = cmp.mapping(
-            function(fallback)
-                if cmp.visible() then
+        ["<C-h>"] = cmp.mapping({
+            i = function(fallback)
+                if luasnip.choice_active() then
+                    luasnip.change_choice(-1)
+                else
+                    fallback()
+                end
+            end
+        }),
+        ["<C-l>"] = cmp.mapping({
+            i = function(fallback)
+                if luasnip.choice_active() then
+                    luasnip.change_choice(1)
+                else
+                    fallback()
+                end
+            end
+        }),
+        ["<Tab>"] = cmp.mapping({
+            i = function(fallback)
+                if cmp.visible() and cmp.get_selected_entry() then
                     cmp.select_next_item()
                 elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
+                elseif cmp.visible() then
+                    cmp.select_next_item()
                 elseif has_words_before() then
                     cmp.complete()
                 else
                     fallback()
                 end
             end,
-            { "i", "s", "c" }
-        ),
-        ["<S-Tab>"] = cmp.mapping(
-            function(fallback)
+            c = function(fallback)
+                cmp.select_next_item()
+            end
+        }),
+        ["<S-Tab>"] = cmp.mapping({
+            i = function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item()
                 elseif luasnip.jumpable(-1) then
@@ -65,8 +86,10 @@ cmp.setup({
                     fallback()
                 end
             end,
-            { "i", "s", "c" }
-        ),
+            c = function(fallback)
+                cmp.select_prev_item()
+            end
+        }),
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
         ["<A-CR>"] = cmp.mapping.confirm({ select = true })
     },
