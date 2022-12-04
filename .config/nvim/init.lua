@@ -36,10 +36,8 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.wo.spell = true
         vim.wo.conceallevel = 2
         vim.api.nvim_buf_set_keymap(autocmd.buf, 'i', '<C-l>', '<C-g>u<ESC>[s1z=A<C-g>u', {})
-        vim.api.nvim_buf_set_keymap(autocmd.buf, 'n', '<leader>le', '<cmd>e ~/.config/nvim/UltiSnips/tex.snippets<CR>',
-            {})
         if not vim.bo.readonly then
-            vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave' }, {
+            vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
                 callback = function()
                     vim.cmd("silent! write")
                 end
