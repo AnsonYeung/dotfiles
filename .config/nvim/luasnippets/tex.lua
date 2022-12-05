@@ -68,9 +68,9 @@ $0
 
     s({ trig = 'sum' },
         fmt('\\sum_{<>=<>}^{<>} <>', {
-            c(1, { t('i'), t('j'), t('k'), t('n'), i(1) }),
-            c(2, { t('0'), t('1'), i(2) }),
-            c(3, { t('\\infty'), t('n'), i(3) }),
+            c(1, { i(nil, 'i'), i(nil, 'j'), i(nil, 'k'), i(nil, 'n') }),
+            c(2, { i(nil, '0'), i(nil, '1') }),
+            c(3, { i(nil, '\\infty'), i(nil, 'n') }),
             dl(4, 'a_' .. l._1 .. ' z^' .. l._1, 1),
         }, { delimiters = '<>' }),
         { show_condition = math, condition = math }
@@ -78,9 +78,9 @@ $0
 
     s({ trig = 'taylor' },
         fmt('\\sum_{<>=<>}^{<>} <> (<>-<>)^<>', {
-            c(1, { t('i'), t('j'), t('k'), t('n'), i(1) }),
-            c(2, { t('0'), t('1'), i(2) }),
-            c(3, { t('\\infty'), t('n'), i(3) }),
+            c(1, { i(nil, 'i'), i(nil, 'j'), i(nil, 'k'), i(nil, 'n') }),
+            c(2, { i(nil, '0'), i(nil, '1') }),
+            c(3, { i(nil, '\\infty'), i(nil, 'n') }),
             dl(4, 'c_' .. l._1, 1),
             i(5, 'x'),
             i(6, 'a'),
@@ -187,8 +187,9 @@ $0
         { condition = math }),
 
     s({ trig = 'enum' },
-        fmt('\\begin{enumerate}<>\n\\end{enumerate}\n', { d(2, dyn_item_list, {}) }, { delimiters = '<>' })),
-    s({ trig = 'item' }, fmt('\\begin{itemize}<>\n\\end{itemize}\n', { d(2, dyn_item_list, {}) }, { delimiters = '<>' })),
+        fmt('\\begin{enumerate}<>\n\\end{enumerate}\n', { d(1, dyn_item_list, {}) }, { delimiters = '<>' })),
+    s({ trig = 'itemize' },
+        fmt('\\begin{itemize}<>\n\\end{itemize}\n', { d(1, dyn_item_list, {}) }, { delimiters = '<>' })),
 
     s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' })
         , { condition = math }),
