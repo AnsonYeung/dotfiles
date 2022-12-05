@@ -149,9 +149,14 @@ $0
     s({ trig = 'arccot' }, t('\\arccot'), { condition = math }),
     s({ trig = 'arccsc' }, t('\\arccsc'), { condition = math }),
     s({ trig = 'arcsec' }, t('\\arcsec'), { condition = math }),
-    s({ trig = 'pi' }, t('\\pi'), { condition = math }),
-    s({ trig = 'zeta' }, t('\\zeta'), { condition = math }),
     s({ trig = 'int' }, t('\\int'), { condition = math }),
+    s({ trig = 'inn' }, t('\\in'), { condition = math }),
+    s({ trig = 'pi', wordTrig = false }, t('\\pi'), { condition = math }),
+    s({ trig = 'zeta', wordTrig = false }, t('\\zeta'), { condition = math }),
+
+    s({ trig = '([NZQRC])%1', regTrig = true }, { t('\\mathbb{'), f(function(_, snip)
+        return snip.captures[1]
+    end), t('}') }, { condition = math }),
 
     s({ trig = 'enum' },
         fmt('\\begin{enumerate}<>\n\\end{enumerate}\n', { d(2, dyn_item_list, {}) }, { delimiters = '<>' })),
@@ -180,9 +185,9 @@ $0
         end }),
 
     s({ trig = '([xyzva])([ijkmn])%2', regTrig = true },
-        fmt('{}_{{{}}}', { f(function (_, snip)
+        fmt('{}_{{{}}}', { f(function(_, snip)
             return snip.captures[1]
-        end), f(function (_, snip)
+        end), f(function(_, snip)
             return snip.captures[2]
         end) }),
         { condition = math }),
