@@ -7,6 +7,7 @@ local d = ls.dynamic_node
 local f = ls.function_node
 local i = ls.insert_node
 local l = require("luasnip.extras").lambda
+local dl = require("luasnip.extras").dynamic_lambda
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
@@ -70,7 +71,7 @@ $0
             c(1, { t('i'), t('j'), t('k'), t('n'), i(1) }),
             c(2, { t('0'), t('1'), i(2) }),
             c(3, { t('\\infty'), t('n'), i(3) }),
-            i(0, 'a_i z^i')
+            dl(4, 'a_' .. l._1 .. ' z^' .. l._1, 1),
         }, { delimiters = '<>' }),
         { show_condition = math, condition = math }
     ),
@@ -80,7 +81,7 @@ $0
             c(1, { t('i'), t('j'), t('k'), t('n'), i(1) }),
             c(2, { t('0'), t('1'), i(2) }),
             c(3, { t('\\infty'), t('n'), i(3) }),
-            i(4, 'c_i'),
+            dl(4, 'c_'..l._1, 1),
             i(5, 'x'),
             i(6, 'a'),
             rep(1)
@@ -122,8 +123,8 @@ $0
     ls.parser.parse_snippet({ trig = '<<' }, '\\ll', { condition = math }),
     ls.parser.parse_snippet({ trig = '~~' }, '\\sim', { condition = math }),
     ls.parser.parse_snippet({ trig = '||' }, '\\mid', { condition = math }),
-    ls.parser.parse_snippet({ trig = '<!'}, '\\triangleleft', { condition = math }),
-    ls.parser.parse_snippet({ trig = '<>'}, '\\diamond', { condition = math }),
+    ls.parser.parse_snippet({ trig = '<!' }, '\\triangleleft', { condition = math }),
+    ls.parser.parse_snippet({ trig = '<>' }, '\\diamond', { condition = math }),
     ls.parser.parse_snippet({ trig = 'cc' }, '\\subset', { condition = math }),
     ls.parser.parse_snippet({ trig = 'inn' }, '\\in', { condition = math }),
     ls.parser.parse_snippet({ trig = 'notin' }, '\\not\\in', { condition = math }),
@@ -178,13 +179,19 @@ $0
     s({ trig = '([NZQRC])%1', regTrig = true }, { t('\\mathbb{'), l(l.CAPTURE1), t('}') }, { condition = math }),
 
     s({ trig = 'dint' }, fmt('\\int_{{{}}}^{{{}}} ', { i(1, '-\\infty'), i(2, '\\infty') }), { condition = math }),
-    s({ trig = 'uuu' }, fmt('\\bigcup_{{{}}} ', { sn(1, {i(1, 'i'), c(2, { sn(nil, {t(' \\in '), i(1, 'I')}), t('') })}) }), { condition = math }),
-    s({ trig = 'nnn' }, fmt('\\bigcap{{{}}} ', { sn(1, {i(1, 'i'), c(2, { sn(nil, {t(' \\in '), i(1, 'I')}), t('') })}) }), { condition = math }),
+    s({ trig = 'uuu' },
+        fmt('\\bigcup_{{{}}} ', { sn(1, { i(1, 'i'), c(2, { sn(nil, { t(' \\in '), i(1, 'I') }), t('') }) }) }),
+        { condition = math }),
+    s({ trig = 'nnn' },
+        fmt('\\bigcap{{{}}} ', { sn(1, { i(1, 'i'), c(2, { sn(nil, { t(' \\in '), i(1, 'I') }), t('') }) }) }),
+        { condition = math }),
 
-    s({ trig = 'enum' }, fmt('\\begin{enumerate}<>\n\\end{enumerate}\n', { d(2, dyn_item_list, {}) }, { delimiters = '<>' })),
+    s({ trig = 'enum' },
+        fmt('\\begin{enumerate}<>\n\\end{enumerate}\n', { d(2, dyn_item_list, {}) }, { delimiters = '<>' })),
     s({ trig = 'item' }, fmt('\\begin{itemize}<>\n\\end{itemize}\n', { d(2, dyn_item_list, {}) }, { delimiters = '<>' })),
 
-    s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' }), { condition = math }),
+    s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' })
+        , { condition = math }),
     s({ trig = '(%(.*%))/', regTrig = true },
         fmt([[<>{<>}]], { f(
             function(_, snip)
@@ -197,12 +204,15 @@ $0
             return last_paren_match(captures[1]) ~= 0
         end }),
 
-    s({ trig = '([xyzva])([ijkmn])%2', regTrig = true }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
+    s({ trig = '([xyzva])([ijkmn])%2', regTrig = true }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }),
+        { condition = math }),
     s({ trig = '(%a)(%d)', regTrig = true }, fmt('{}_{}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
     s({ trig = '(%a)_(%d%d)', regTrig = true }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
 
-    s({ trig = '<(.*)|', regTrig = true }, fmt('\\bra{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }), { condition = math }),
-    s({ trig = '|(.*)>', regTrig = true }, fmt('\\ket{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }), { condition = math }),
+    s({ trig = '<(.*)|', regTrig = true }, fmt('\\bra{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }),
+        { condition = math }),
+    s({ trig = '|(.*)>', regTrig = true }, fmt('\\ket{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }),
+        { condition = math }),
     s({ trig = '\\bra{(.*)}([^\\|]*)>', regTrig = true },
         fmt('\\braket{{{}}}{{{}}}', {
             l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')),
