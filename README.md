@@ -1,1 +1,1 @@
-Run `./setup.sh -s` to setup and create symlinks
+Run `./setup.sh` to setup and create symlinks
