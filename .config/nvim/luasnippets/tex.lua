@@ -146,7 +146,7 @@ $0
     ls.parser.parse_snippet({ trig = 'lrb', wordTrig = false }, '\\left\\{$1\\right\\}', { condition = math }),
     ls.parser.parse_snippet({ trig = 'lr|', wordTrig = false }, '\\left|$1\\right|', { condition = math }),
     ls.parser.parse_snippet({ trig = 'norm', wordTrig = false }, '\\left|$1\\right|', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lr<', wordTrig = false }, '\\left\\langle $1 \\right\\rangle', { condition = math }),
+    ls.parser.parse_snippet({ trig = 'lr<', wordTrig = false }, '\\left< $1 \\right>', { condition = math }),
     ls.parser.parse_snippet({ trig = 'lra', wordTrig = false }, '\\left\\langle $1 \\right\\rangle', { condition = math }),
     ls.parser.parse_snippet({ trig = 'ceil', wordTrig = false }, '\\left\\lceil $1 \\right\\rceil', { condition = math }),
     ls.parser.parse_snippet({ trig = 'floor', wordTrig = false }, '\\left\\lfloor $1 \\right\\rfloor',
