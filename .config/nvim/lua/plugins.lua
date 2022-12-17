@@ -25,17 +25,11 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lsp',
             'lukas-reineke/lsp-format.nvim'
         },
-        config = function()
-            require 'config.nvim-lspconfig'
-        end
     }
 
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = function()
-            require 'config.nvim-treesitter'
-        end
     }
 
     use {
@@ -47,9 +41,6 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-cmdline' },
         },
-        config = function()
-            require 'config.nvim-cmp'
-        end,
     }
 
     use {
@@ -179,9 +170,6 @@ return require('packer').startup(function(use)
     use {
         "L3MON4D3/LuaSnip",
         tag = "v1.*",
-        config = function()
-            require 'config.luasnip'
-        end
     }
 
     use 'christoomey/vim-tmux-navigator'
