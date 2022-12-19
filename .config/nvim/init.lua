@@ -19,11 +19,6 @@ vim.g.mapleader = ' '
 vim.g.tex_flavor = 'latex'
 vim.g.tex_conceal = 'abdmg'
 
-if vim.env.WSL_INTEROP then
-    vim.g.vimtex_view_general_viewer = 'sumatra'
-    vim.g.vimtex_view_general_options = '-reuse-instance -forward-search `basename @tex` @line `basename @pdf`'
-end
-
 -- Altho it looks cool, it often messed up snippets
 vim.g.vimtex_quickfix_mode = 0
 
