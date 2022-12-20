@@ -19,7 +19,16 @@ source $SCRIPT_DIR/gitdir_list.sh
 
 for i in ${(f)FILES}; do
     mkdir -p $(dirname ~/$i)
-    ln $SCRIPT_DIR/$i ~/$i -s "$@"
+    if [ -e ~/$i ]; then
+        mv ~/$i ~/$i.old
+    fi
+    ln $SCRIPT_DIR/$i ~/$i -s
 done
 
-ln .profile ~/.zprofile -s "$@"
+if [ -f ~/.zprofile ]; then
+    mv ~/.zprofile ~/.zprofile.old
+fi
+
+ln .profile ~/.zprofile -s
+
+exec zsh -l
