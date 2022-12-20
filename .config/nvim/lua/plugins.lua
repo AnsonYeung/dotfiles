@@ -124,7 +124,9 @@ return require('packer').startup(function(use)
                 { noremap = true })
 
             vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, {})
+            vim.keymap.set('n', '<leader>f*', require('telescope.builtin').grep_string, {})
             vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})
+            vim.keymap.set('n', '<leader>fs', require('telescope.builtin').treesitter, {})
         end,
     })
 
