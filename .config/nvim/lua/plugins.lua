@@ -115,18 +115,23 @@ return require('packer').startup(function(use)
                 group = lgGrp
             })
 
-            --[[
-            vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua require('telescope').extensions.lazygit.lazygit()<cr>",
-                { noremap = true })
-            --]]
-
-            vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>LazyGit<cr>",
-                { noremap = true })
-
             vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, {})
             vim.keymap.set('n', '<leader>f*', require('telescope.builtin').grep_string, {})
             vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})
             vim.keymap.set('n', '<leader>fs', require('telescope.builtin').treesitter, {})
+            vim.keymap.set('n', '<leader>g', require('telescope').extensions.lazygit.lazygit, {})
+
+            local actions = require("telescope.actions")
+            require("telescope").setup {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<esc>"] = actions.close
+                        },
+                    },
+                }
+            }
+
         end,
     })
 
