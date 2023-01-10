@@ -81,7 +81,6 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    zsh-vi-mode
     branch
     command-not-found
     pip
