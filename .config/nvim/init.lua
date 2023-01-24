@@ -74,6 +74,10 @@ vim.keymap.set('n', '<leader>vr', '<cmd>source $MYVIMRC<CR>', {})
 vim.keymap.set('n', '<leader>vt', ':vsplit|term<CR>A', {})
 vim.keymap.set('n', '<leader>b', '<cmd>bp|bd #<CR>', {})
 vim.keymap.set('n', '<leader>h', ':Help ')
+vim.keymap.set('n', '<leader>tf', function()
+    local fmt = require('lsp-format')
+    fmt.disabled = not fmt.disabled
+end)
 vim.api.nvim_create_user_command('Help', 'enew | set buftype=help | help <args>', { nargs = 1, complete = 'help' })
 
 vim.g['airline#extensions#tabline#enabled'] = 1

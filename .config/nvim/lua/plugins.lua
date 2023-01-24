@@ -212,6 +212,9 @@ return require('packer').startup(function(use)
                 command = 'let b:auto_save = 1',
                 group = autosaveGp
             })
+            vim.keymap.set('n', '<leader>ts', function()
+                vim.b.auto_save = (vim.b.auto_save == 0) and 1 or 0
+            end, {})
         end
     }
 
