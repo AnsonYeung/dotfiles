@@ -211,11 +211,14 @@ $0
     s({ trig = '(%a)(%d)', regTrig = true }, fmt('{}_{}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
     s({ trig = '(%a)_(%d%d)', regTrig = true }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
 
-    s({ trig = '<(.*)|', regTrig = true }, fmt('\\bra{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }),
+    s({ trig = '<([^ ]*)|', regTrig = true },
+        fmt('\\bra{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) })
+        ,
         { condition = math }),
-    s({ trig = '|(.*)>', regTrig = true }, fmt('\\ket{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }),
+    s({ trig = '|([^ ]*)>', regTrig = true },
+        fmt('\\ket{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) }),
         { condition = math }),
-    s({ trig = '\\bra{(.*)}([^\\|]*)>', regTrig = true },
+    s({ trig = '\\bra{([^ ]*)}([^\\|]*)>', regTrig = true },
         fmt('\\braket{{{}}}{{{}}}', {
             l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')),
             l(l.CAPTURE2:gsub('q', '\\psi'):gsub('f', '\\phi'))
