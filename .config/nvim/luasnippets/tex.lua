@@ -157,7 +157,7 @@ $0
     ls.parser.parse_snippet({ trig = 'bmat', wordTrig = false }, '\\begin{bmatrix}$1\\end{bmatrix}', { condition = math }),
     ls.parser.parse_snippet({ trig = 'mcal', wordTrig = false }, '\\mathcal{$1}', { condition = math }),
     ls.parser.parse_snippet({ trig = 'xx', wordTrig = false }, '\\times', { condition = math }),
-    ls.parser.parse_snippet({ trig = '**', wordTrig = false }, '\\cdots', { condition = math }),
+    ls.parser.parse_snippet({ trig = '**', wordTrig = false }, '\\cdot', { condition = math }),
 
     s({ trig = 'sin' }, t('\\sin'), { condition = math }),
     s({ trig = 'cos' }, t('\\cos'), { condition = math }),
@@ -194,7 +194,7 @@ $0
 
     s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' })
         , { condition = math }),
-    s({ trig = '(%(.*%))/', regTrig = true },
+    s({ trig = '(.*%))/', regTrig = true },
         fmt([[<>{<>}]], { f(
             function(_, snip)
                 local match = snip.captures[1]
