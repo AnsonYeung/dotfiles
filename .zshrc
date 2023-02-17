@@ -150,6 +150,10 @@ function venv() {
     echo "${ZSH_ARGZERO}: venv not found" 1>&2
 }
 
+zle-line-init() {
+    echo -ne "\e[5 q"
+}
+
 TIMEFMT=$'time %J\nuser\t%mU\nsystem\t%mS\ntotal\t%mE (%P cpu)'
 
 # The following lines were added by compinstall
