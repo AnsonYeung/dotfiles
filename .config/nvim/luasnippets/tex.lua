@@ -181,7 +181,8 @@ $0
 
     s({ trig = 'dint' }, fmt('\\int_{{{}}}^{{{}}} ', { i(1, '-\\infty'), i(2, '\\infty') }), { condition = math }),
     s({ trig = 'uuu' },
-        fmt('\\bigcup_{{{}}} ', { sn(1, { i(1, 'i'), c(2, { sn(nil, { t(' \\in '), i(1, 'I') }), t('') }) }) }),
+        fmt('\\bigcup_{{{}}} ',
+            { sn(1, { i(1, 'i'), c(2, { sn(nil, { t(' \\in '), i(1, 'I') }), sn(nil, { t('=1') }), t('') }) }) }),
         { condition = math }),
     s({ trig = 'nnn' },
         fmt('\\bigcap{{{}}} ', { sn(1, { i(1, 'i'), c(2, { sn(nil, { t(' \\in '), i(1, 'I') }), t('') }) }) }),
