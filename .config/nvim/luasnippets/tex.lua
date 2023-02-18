@@ -97,10 +97,10 @@ $0
     ls.parser.parse_snippet({ trig = 'sr', wordTrig = false }, '^2', { condition = math }),
     ls.parser.parse_snippet({ trig = 'cb', wordTrig = false }, '^3', { condition = math }),
     ls.parser.parse_snippet({ trig = 'td', wordTrig = false }, '^{$1}', { condition = math }),
-    ls.parser.parse_snippet({ trig = '__' }, '_{$1}', { condition = math }),
+    ls.parser.parse_snippet({ trig = '__', wordTrig = false }, '_{$1}', { condition = math }),
     ls.parser.parse_snippet({ trig = 'sq', wordTrig = false }, '\\sqrt{$1}', { condition = math }),
     ls.parser.parse_snippet({ trig = 'vec', wordTrig = false }, '\\vec{$1}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'tt', wordTrig = false }, '\\text{$1}', { condition = math }),
+    ls.parser.parse_snippet({ trig = 'tt' }, '\\text{$1}', { condition = math }),
 
     s({ trig = '...' }, t('\\dots')),
     s({ trig = '=>' }, t('\\implies'), { condition = math }),
@@ -140,7 +140,7 @@ $0
     s({ trig = 'lll', wordTrig = false }, t('\\ell'), { condition = math }),
     s({ trig = 'nabl', wordTrig = false }, t('\\nabla'), { condition = math }),
 
-    ls.parser.parse_snippet({ trig = '()' }, '\\left($1\\right)', { condition = math }),
+    ls.parser.parse_snippet({ trig = '()', wordTrig = false }, '\\left($1\\right)', { condition = math }),
     ls.parser.parse_snippet({ trig = 'lr(', wordTrig = false }, '\\left($1\\right)', { condition = math }),
     ls.parser.parse_snippet({ trig = 'lr[', wordTrig = false }, '\\left[$1\\right]', { condition = math }),
     ls.parser.parse_snippet({ trig = 'lr{', wordTrig = false }, '\\left\\\\{$1\\right\\\\}', { condition = math }),
@@ -192,9 +192,10 @@ $0
     s({ trig = 'itemize' },
         fmt('\\begin{itemize}<>\n\\end{itemize}\n', { d(1, dyn_item_list, {}) }, { delimiters = '<>' })),
 
-    s({ trig = '([%d%a\\_]+)/', regTrig = true }, fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' })
+    s({ trig = '([%d%a\\_]+)/', regTrig = true, wordTrig = false },
+        fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' })
         , { condition = math }),
-    s({ trig = '(.*%))/', regTrig = true },
+    s({ trig = '(.*%))/', regTrig = true, wordTrig = false },
         fmt([[<>{<>}]], { f(
             function(_, snip)
                 local match = snip.captures[1]
@@ -206,10 +207,13 @@ $0
             return last_paren_match(captures[1]) ~= 0
         end }),
 
-    s({ trig = '([xyzva])([ijkmn])%2', regTrig = true }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }),
+    s({ trig = '([xyzva])([ijkmn])%2', regTrig = true, wordTrig = false },
+        fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }),
         { condition = math }),
-    s({ trig = '(%a)(%d)', regTrig = true }, fmt('{}_{}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
-    s({ trig = '(%a)_(%d%d)', regTrig = true }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }), { condition = math }),
+    s({ trig = '(%a)(%d)', regTrig = true, wordTrig = false }, fmt('{}_{}', { l(l.CAPTURE1), l(l.CAPTURE2) }),
+        { condition = math }),
+    s({ trig = '(%a)_(%d%d)', regTrig = true, wordTrig = false }, fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }),
+        { condition = math }),
 
     s({ trig = '<([^ ]*)|', regTrig = true },
         fmt('\\bra{{{}}}', { l(l.CAPTURE1:gsub('q', '\\psi'):gsub('f', '\\phi')) })
