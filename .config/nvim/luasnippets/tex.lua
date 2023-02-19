@@ -47,17 +47,10 @@ return {
     ls.parser.parse_snippet({ trig = 'template' }, [[
 \documentclass[a4paper]{article}
 
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{textcomp}
 \usepackage{amsmath, amssymb, physics}
 \usepackage{array}
-\usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
 \pdfminorversion=7
-\pdfsuppresswarningpagegroup=1
 
 \begin{document}
 $0
