@@ -48,6 +48,7 @@ return {
 \documentclass[a4paper]{article}
 
 \usepackage[T1]{fontenc}
+\usepackage[english]{babel}
 \usepackage{amsmath, amssymb, physics}
 \usepackage{array}
 \pdfminorversion=7
