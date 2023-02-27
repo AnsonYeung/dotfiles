@@ -44,21 +44,21 @@ dyn_item_list = function()
 end
 
 return {
-    ls.parser.parse_snippet({ trig = 'template' }, [[
-\documentclass[a4paper]{article}
+    s({ trig = 'template' }, fmt([[
+\documentclass[a4paper]{{article}}
 
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage{amsmath, amssymb, physics}
-\usepackage{array}
+\usepackage[T1]{{fontenc}}
+\usepackage[english]{{babel}}
+\usepackage{{amsmath, amssymb, physics}}
+\usepackage{{array}}
 \pdfminorversion=7
 
-\begin{document}
-$0
-\end{document}
-    ]]),
-    ls.parser.parse_snippet({ trig = 'pac' }, '\\usepackage[${1:options}]{${2:package}}'),
-    ls.parser.parse_snippet({ trig = 'lr' }, '\\left($1\\right)', { show_condition = math, condition = math }),
+\begin{{document}}
+{}
+\end{{document}}
+    ]], { i(0) })),
+    s({ trig = 'pac' }, fmt('\\usepackage[{}]{{{}}}', { i(1, 'options'), i(2, 'package') })),
+    s({ trig = 'lr' }, fmt('\\left({}\\right)', { i(1) }), { show_condition = math, condition = math }),
 
     s({ trig = 'sum' },
         fmt('\\sum_{<>=<>}^{<>} <>', {
@@ -134,24 +134,24 @@ $0
     s({ trig = 'lll', wordTrig = false }, t('\\ell'), { condition = math }),
     s({ trig = 'nabl', wordTrig = false }, t('\\nabla'), { condition = math }),
 
-    ls.parser.parse_snippet({ trig = '()', wordTrig = false }, '\\left($1\\right)', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lr(', wordTrig = false }, '\\left($1\\right)', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lr[', wordTrig = false }, '\\left[$1\\right]', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lr{', wordTrig = false }, '\\left\\\\{$1\\right\\\\}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lrb', wordTrig = false }, '\\left\\\\{$1\\right\\\\}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lr|', wordTrig = false }, '\\left|$1\\right|', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'norm', wordTrig = false }, '\\left|$1\\right|', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lr<', wordTrig = false }, '\\left< $1 \\right>', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'lra', wordTrig = false }, '\\left\\langle $1 \\right\\rangle', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'ceil', wordTrig = false }, '\\left\\lceil $1 \\right\\rceil', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'floor', wordTrig = false }, '\\left\\lfloor $1 \\right\\rfloor',
+    s({ trig = '()', wordTrig = false }, fmt('\\left({}\\right)', { i(1) }), { condition = math }),
+    s({ trig = 'lr(', wordTrig = false }, fmt('\\left({}\\right)', { i(1) }), { condition = math }),
+    s({ trig = 'lr[', wordTrig = false }, fmt('\\left[{}\\right]', { i(1) }), { condition = math }),
+    s({ trig = 'lr{', wordTrig = false }, fmt('\\left\\{{{}\\right\\}}', { i(1) }), { condition = math }),
+    s({ trig = 'lrb', wordTrig = false }, fmt('\\left\\{{{}\\right\\}}', { i(1) }), { condition = math }),
+    s({ trig = 'lr|', wordTrig = false }, fmt('\\left|{}\\right|', { i(1) }), { condition = math }),
+    s({ trig = 'norm', wordTrig = false }, fmt('\\left|{}\\right|', { i(1) }), { condition = math }),
+    s({ trig = 'lr<', wordTrig = false }, fmt('\\left< {} \\right>', { i(1) }), { condition = math }),
+    s({ trig = 'lra', wordTrig = false }, fmt('\\left\\langle {} \\right\\rangle', { i(1) }), { condition = math }),
+    s({ trig = 'ceil', wordTrig = false }, fmt('\\left\\lceil {} \\right\\rceil', { i(1) }), { condition = math }),
+    s({ trig = 'floor', wordTrig = false }, fmt('\\left\\lfloor {} \\right\\rfloor', { i(1) }),
         { condition = math }),
-    ls.parser.parse_snippet({ trig = 'conj', wordTrig = false }, '\\overline{$1}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'pmat', wordTrig = false }, '\\begin{pmatrix}$1\\end{pmatrix}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'bmat', wordTrig = false }, '\\begin{bmatrix}$1\\end{bmatrix}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'mcal', wordTrig = false }, '\\mathcal{$1}', { condition = math }),
-    ls.parser.parse_snippet({ trig = 'xx', wordTrig = false }, '\\times', { condition = math }),
-    ls.parser.parse_snippet({ trig = '**', wordTrig = false }, '\\cdot', { condition = math }),
+    s({ trig = 'conj', wordTrig = false }, fmt('\\overline{{{}}}', { i(1) }), { condition = math }),
+    s({ trig = 'pmat', wordTrig = false }, fmt('\\begin{{pmatrix}}{}\\end{{pmatrix}}', { i(1) }), { condition = math }),
+    s({ trig = 'bmat', wordTrig = false }, fmt('\\begin{{bmatrix}}{}\\end{{bmatrix}}', { i(1) }), { condition = math }),
+    s({ trig = 'mcal', wordTrig = false }, fmt('\\mathcal{{{}}}', { i(1) }), { condition = math }),
+    s({ trig = 'xx', wordTrig = false }, t('\\times'), { condition = math }),
+    s({ trig = '**', wordTrig = false }, t('\\cdot'), { condition = math }),
 
     s({ trig = 'sin' }, t('\\sin'), { condition = math }),
     s({ trig = 'cos' }, t('\\cos'), { condition = math }),
