@@ -59,7 +59,6 @@ return {
     ]], { i(0) })),
     s({ trig = 'pac' }, fmt('\\usepackage[{}]{{{}}}', { i(1, 'options'), i(2, 'package') })),
     s({ trig = 'lr' }, fmt('\\left({}\\right)', { i(1) }), { show_condition = math, condition = math }),
-
     s({ trig = 'sum' },
         fmt('\\sum_{<>=<>}^{<>} <>', {
             c(1, { i(nil, 'i'), i(nil, 'j'), i(nil, 'k'), i(nil, 'n') }),
@@ -87,7 +86,7 @@ return {
     s({ trig = 'dm' }, fmt('\\[\n{}\n.\\]', { i(1) })),
     s({ trig = 'beg' }, fmt('\\begin{{{}}}\n{}\n\\end{{{}}}\n', { i(1), i(2), rep(1) })),
     s({ trig = 'ali' }, fmt('\\begin{{align*}}\n{}\n\\end{{align*}}\n', { i(1) })),
-    s({ trig = 'case' }, fmt('\\begin{{cases*}}\n{}\n\\end{{cases*}}\n', { i(1) }), { condition = math }),
+    s({ trig = 'case' }, fmt('\\begin{{cases}}\n{}\n\\end{{cases}}\n', { i(1) }), { condition = math }),
     s({ trig = 'sr', wordTrig = false }, t('^2'), { condition = math }),
     s({ trig = 'cb', wordTrig = false }, t('^3'), { condition = math }),
     s({ trig = 'td', wordTrig = false }, fmt('^{{{}}}', { i(1) }), { condition = math }),
@@ -133,7 +132,6 @@ return {
     s({ trig = 'zeta', wordTrig = false }, t('\\zeta'), { condition = math }),
     s({ trig = 'lll', wordTrig = false }, t('\\ell'), { condition = math }),
     s({ trig = 'nabl', wordTrig = false }, t('\\nabla'), { condition = math }),
-
     s({ trig = '()', wordTrig = false }, fmt('\\left({}\\right)', { i(1) }), { condition = math }),
     s({ trig = 'lr(', wordTrig = false }, fmt('\\left({}\\right)', { i(1) }), { condition = math }),
     s({ trig = 'lr[', wordTrig = false }, fmt('\\left[{}\\right]', { i(1) }), { condition = math }),
@@ -152,7 +150,6 @@ return {
     s({ trig = 'mcal', wordTrig = false }, fmt('\\mathcal{{{}}}', { i(1) }), { condition = math }),
     s({ trig = 'xx', wordTrig = false }, t('\\times'), { condition = math }),
     s({ trig = '**', wordTrig = false }, t('\\cdot'), { condition = math }),
-
     s({ trig = 'sin' }, t('\\sin'), { condition = math }),
     s({ trig = 'cos' }, t('\\cos'), { condition = math }),
     s({ trig = 'arccot' }, t('\\arccot'), { condition = math }),
@@ -170,9 +167,7 @@ return {
     s({ trig = 'arccot' }, t('\\arccot'), { condition = math }),
     s({ trig = 'arccsc' }, t('\\arccsc'), { condition = math }),
     s({ trig = 'arcsec' }, t('\\arcsec'), { condition = math }),
-
     s({ trig = '([NZQRC])%1', regTrig = true }, { t('\\mathbb{'), l(l.CAPTURE1), t('}') }, { condition = math }),
-
     s({ trig = 'dint' }, fmt('\\int_{{{}}}^{{{}}} ', { i(1, '-\\infty'), i(2, '\\infty') }), { condition = math }),
     s({ trig = 'uuu' },
         fmt('\\bigcup_{{{}}} ',
@@ -189,7 +184,6 @@ return {
         fmt('\\begin{enumerate}<>\n\\end{enumerate}\n', { d(1, dyn_item_list, {}) }, { delimiters = '<>' })),
     s({ trig = 'itemize' },
         fmt('\\begin{itemize}<>\n\\end{itemize}\n', { d(1, dyn_item_list, {}) }, { delimiters = '<>' })),
-
     s({ trig = '([%d%a\\_]+)/', regTrig = true, wordTrig = false },
         fmt([[\frac{<>}{<>}]], { l(l.CAPTURE1), i(1) }, { delimiters = '<>' })
         , { condition = math }),
@@ -201,9 +195,11 @@ return {
                 return match:sub(1, pos - 1) .. "\\frac{" .. match:sub(pos + 1, #match - 1) .. "}"
             end
         ), i(1) }, { delimiters = '<>' }),
-        { condition = function(_, _, captures)
-            return last_paren_match(captures[1]) ~= 0
-        end }),
+        {
+            condition = function(_, _, captures)
+                return last_paren_match(captures[1]) ~= 0
+            end
+        }),
 
     s({ trig = '([xyzva])([ijkmn])%2', regTrig = true, wordTrig = false },
         fmt('{}_{{{}}}', { l(l.CAPTURE1), l(l.CAPTURE2) }),
