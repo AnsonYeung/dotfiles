@@ -60,11 +60,10 @@ return {
     s({ trig = 'pac' }, fmt('\\usepackage[{}]{{{}}}', { i(1, 'options'), i(2, 'package') })),
     s({ trig = 'lr' }, fmt('\\left({}\\right)', { i(1) }), { show_condition = math, condition = math }),
     s({ trig = 'sum' },
-        fmt('\\sum_{<>=<>}^{<>} <>', {
+        fmt('\\sum_{<>=<>}^{<>} ', {
             c(1, { i(nil, 'i'), i(nil, 'j'), i(nil, 'k'), i(nil, 'n') }),
             c(2, { i(nil, '0'), i(nil, '1') }),
             c(3, { i(nil, '\\infty'), i(nil, 'n') }),
-            dl(4, 'a_' .. l._1 .. ' z^' .. l._1, 1),
         }, { delimiters = '<>' }),
         { show_condition = math, condition = math }
     ),
@@ -129,6 +128,7 @@ return {
     s({ trig = 'OO' }, t('\\emptyset'), { condition = math }),
     s({ trig = 'int' }, t('\\int'), { condition = math }),
     s({ trig = 'pi', wordTrig = false }, t('\\pi'), { condition = math }),
+    s({ trig = 'eps', wordTrig = false }, t('\\epsilon'), { condition = math }),
     s({ trig = 'zeta', wordTrig = false }, t('\\zeta'), { condition = math }),
     s({ trig = 'lll', wordTrig = false }, t('\\ell'), { condition = math }),
     s({ trig = 'nabl', wordTrig = false }, t('\\nabla'), { condition = math }),
