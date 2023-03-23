@@ -138,7 +138,7 @@ return {
     s({ trig = 'lr{', wordTrig = false }, fmt('\\left\\{{{}\\right\\}}', { i(1) }), { condition = math }),
     s({ trig = 'lrb', wordTrig = false }, fmt('\\left\\{{{}\\right\\}}', { i(1) }), { condition = math }),
     s({ trig = 'lr|', wordTrig = false }, fmt('\\left|{}\\right|', { i(1) }), { condition = math }),
-    s({ trig = 'norm', wordTrig = false }, fmt('\\left|{}\\right|', { i(1) }), { condition = math }),
+    s({ trig = 'norm', wordTrig = false }, fmt('\\left\\|{}\\right\\|', { i(1) }), { condition = math }),
     s({ trig = 'lr<', wordTrig = false }, fmt('\\left< {} \\right>', { i(1) }), { condition = math }),
     s({ trig = 'lra', wordTrig = false }, fmt('\\left\\langle {} \\right\\rangle', { i(1) }), { condition = math }),
     s({ trig = 'ceil', wordTrig = false }, fmt('\\left\\lceil {} \\right\\rceil', { i(1) }), { condition = math }),
