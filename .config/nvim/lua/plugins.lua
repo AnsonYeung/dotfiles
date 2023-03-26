@@ -161,7 +161,7 @@ return require('packer').startup(function(use)
     }
 
     use {
-        "folke/trouble.nvim",
+        'folke/trouble.nvim',
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
             require("trouble").setup {
@@ -173,9 +173,15 @@ return require('packer').startup(function(use)
         end
     }
 
-    use 'lervag/vimtex'
     use {
-        "L3MON4D3/LuaSnip",
+        'lervag/vimtex',
+        config = function()
+            vim.g.vimtex_mappings_disable = { i = { ']]' } }
+        end
+    }
+
+    use {
+        'L3MON4D3/LuaSnip',
         tag = "v1.*",
     }
 
@@ -206,7 +212,7 @@ return require('packer').startup(function(use)
         '907th/vim-auto-save',
         config = function()
             local autosaveGp = vim.api.nvim_create_augroup('auto-save', { clear = true })
-            vim.cmd [[ let g:auto_save_events = ["TextChanged", "TextChangedI"] ]]
+            vim.cmd [[ let g:auto_save_events = ["BufModifiedSet"] ]]
             vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'tex',
                 command = 'let b:auto_save = 1',
