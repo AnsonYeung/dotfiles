@@ -26,6 +26,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.r2env/bin:$PATH"
 export CP="$HOME/competitive-programming"
 export EDITOR="nvim"
+export DIFFPROG="nvim -d"
 export LESS="-F -R $LESS"
 export MAKEFLAGS="-j $(nproc)"
 
