@@ -150,6 +150,10 @@ function venv() {
     echo "${ZSH_ARGZERO}: venv not found" 1>&2
 }
 
+function gui() {
+    (setsid $1 </dev/null >&0 2>&0 &)
+}
+
 zle-line-init() {
     echo -ne "\e[5 q"
 }
