@@ -45,7 +45,6 @@ return require('packer').startup(function(use)
 
     use {
         'akinsho/bufferline.nvim',
-        tag = "v2.*",
         requires = 'kyazdani42/nvim-web-devicons',
         config = function()
             require 'bufferline'.setup {}
@@ -180,11 +179,7 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {
-        'L3MON4D3/LuaSnip',
-        tag = "v1.*",
-    }
-
+    use 'L3MON4D3/LuaSnip'
     use 'christoomey/vim-tmux-navigator'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
