@@ -25,8 +25,7 @@ else:
 if args["REMOTE"]:
 	libc = ELF("./{}")
 else:
-	libc = p.libc
-    libc.address = 0
+	libc = e.libc
 
         ]], { i(1, 'libc.so.6') })
     ),
