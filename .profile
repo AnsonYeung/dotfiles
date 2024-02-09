@@ -30,6 +30,8 @@ export DIFFPROG="nvim -d"
 export LESS="-F -R $LESS"
 export MAKEFLAGS="-j $(nproc)"
 
+unset VISUAL
+
 if [ ! -z "$WSLENV" ] && [ -z "$DISPLAY" ]; then
     export DISPLAY=$(/mnt/c/Windows/System32/ipconfig.exe | sed -n '/WSL/,+4p' | tail -n 1 | sed -s "s/.*: //" | sed -s "s/\r//"):0
 fi
