@@ -119,7 +119,7 @@ return {
     s({ trig = '||' }, t('\\mid'), { condition = math }),
     s({ trig = '<!' }, t('\\triangleleft'), { condition = math }),
     s({ trig = '<>' }, t('\\diamond'), { condition = math }),
-    s({ trig = 'CC' }, t('\\subset'), { condition = math }),
+    s({ trig = 'cc' }, t('\\subset'), { condition = math }),
     s({ trig = 'inn' }, t('\\in'), { condition = math }),
     s({ trig = 'notin' }, t('\\not\\in'), { condition = math }),
     s({ trig = 'Nn' }, t('\\cap'), { condition = math }),
