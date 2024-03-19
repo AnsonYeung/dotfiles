@@ -150,6 +150,13 @@ function venv() {
     echo "${ZSH_ARGZERO}: venv not found" 1>&2
 }
 
+function tfg() {
+    local settings=$(stty -g)
+    stty raw -echo
+    fg
+    stty $settings
+}
+
 function gui() {
     (setsid $1 </dev/null >&0 2>&0 &)
 }
