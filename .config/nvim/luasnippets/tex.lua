@@ -130,6 +130,7 @@ return {
     s({ trig = 'int' }, t('\\int'), { condition = math }),
     s({ trig = 'pi', wordTrig = false }, t('\\pi'), { condition = math }),
     s({ trig = 'eps', wordTrig = false }, t('\\epsilon'), { condition = math }),
+    s({ trig = 'ga', wordTrig = false }, t('\\gamma'), { condition = math }),
     s({ trig = 'zeta', wordTrig = false }, t('\\zeta'), { condition = math }),
     s({ trig = 'lll', wordTrig = false }, t('\\ell'), { condition = math }),
     s({ trig = 'nabl', wordTrig = false }, t('\\nabla'), { condition = math }),
