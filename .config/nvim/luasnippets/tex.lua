@@ -128,6 +128,7 @@ return {
     s({ trig = 'perp' }, t('\\perp'), { condition = math }),
     s({ trig = 'OO' }, t('\\emptyset'), { condition = math }),
     s({ trig = 'int' }, t('\\int'), { condition = math }),
+    s({ trig = 'par' }, t('\\partial'), { condition = math }),
     s({ trig = 'pi', wordTrig = false }, t('\\pi'), { condition = math }),
     s({ trig = 'eps', wordTrig = false }, t('\\epsilon'), { condition = math }),
     s({ trig = 'ga', wordTrig = false }, t('\\gamma'), { condition = math }),
