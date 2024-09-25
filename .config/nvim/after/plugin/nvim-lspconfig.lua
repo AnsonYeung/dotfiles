@@ -42,7 +42,7 @@ end
 -- map buffer local keybindings when the language server attaches
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = { 'clangd', 'pyright', 'rust_analyzer', 'tsserver' }
+local servers = { 'clangd', 'pyright', 'rust_analyzer', 'ts_ls' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
