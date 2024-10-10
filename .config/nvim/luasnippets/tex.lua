@@ -161,7 +161,7 @@ return {
     s({ trig = 'ln' }, t('\\ln'), { condition = math }),
     s({ trig = 'log' }, t('\\log'), { condition = math }),
     s({ trig = 'exp' }, { t('\\exp{'), i(1), t('}') }, { condition = math }),
-    s({ trig = 'mod' }, t('\\mod'), { condition = math }),
+    s({ trig = 'mod' }, t('\\bmod'), { condition = math }),
     s({ trig = 'gcd' }, t('\\gcd'), { condition = math }),
     s({ trig = 'det' }, t('\\det'), { condition = math }),
     s({ trig = 'arcsin' }, t('\\arcsin'), { condition = math }),
