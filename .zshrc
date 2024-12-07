@@ -137,6 +137,7 @@ alias vim="nvim"
 alias dis="objdump --demangle -M intel"
 alias locnomnt="locate -A --regex '^/([^m]|m[^n]|mn[^t]|mnt[^/])'"
 alias pwninit="pwninit --no-template"
+alias wget="wget --content-disposition"
 
 function venv() {
     local p=$(pwd)
