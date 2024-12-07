@@ -93,7 +93,7 @@ return {
     s({ trig = 'sq', wordTrig = false }, fmt('\\sqrt{{{}}}', { i(1) }), { condition = math }),
     s({ trig = 'rt', wordTrig = false }, fmt('\\sqrt[{}]{{{}}}', { i(1), i(2) }), { condition = math }),
     s({ trig = 'vec', wordTrig = false }, fmt('\\vec{{{}}}', { i(1) }), { condition = math }),
-    s({ trig = 'tt' }, fmt('\\text{{{}}}', { i(1) }), { condition = math }),
+    s({ trig = 'ttt' }, fmt('\\text{{{}}}', { i(1) }), { condition = math }),
 
     s({ trig = '...' }, t('\\dots')),
     s({ trig = '=>' }, t('\\implies'), { condition = math }),
