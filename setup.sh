@@ -13,7 +13,7 @@ gitdir_add() {
 source $SCRIPT_DIR/gitdir_list.sh
 
 if [ ! -f ~/.gdbinit ]; then
-    ~/github/pwndbg/setup.sh
+    (cd ~/github/pwndbg && ./setup.sh)
 fi
 
 for i in ${(f)FILES}; do
