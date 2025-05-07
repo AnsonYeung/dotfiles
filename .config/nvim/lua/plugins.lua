@@ -208,7 +208,7 @@ return require('packer').startup(function(use)
         '907th/vim-auto-save',
         config = function()
             local autosaveGp = vim.api.nvim_create_augroup('auto-save', { clear = true })
-            vim.cmd [[ let g:auto_save_events = ["BufModifiedSet"] ]]
+            vim.cmd [[ let g:auto_save_events = ["CursorHold", "CursorHoldI"] ]]
             vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'tex',
                 command = 'let b:auto_save = 1',
